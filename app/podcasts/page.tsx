@@ -47,7 +47,7 @@ export default function PodcastsPage() {
             <p className={styles.body}>{show.body}</p>
 
             <figure className={styles.cover}>
-              <Media seed={i + 5} />
+              <Media src={show.image} seed={i + 5} />
               <figcaption className={styles.coverLabel}>
                 {show.title}
                 <span>A {site.name} Podcast</span>

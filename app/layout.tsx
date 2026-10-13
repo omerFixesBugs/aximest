@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    "A North American team of specialists with profound technical expertise. Advisory, blockchain, product development, enterprise software and AI.",
+    "A team of specialists with profound technical expertise. Advisory, blockchain, product development, enterprise software and AI.",
   openGraph: {
     title: `${site.name} — An Elite Team of Software Engineers`,
     description:

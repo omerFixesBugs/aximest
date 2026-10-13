@@ -318,7 +318,7 @@ export default function WorkTornado() {
                 >
                   <article className={styles.cardInner}>
                     <figure className={styles.media}>
-                      <Media seed={i % projects.length} dark />
+                      <Media src={project.image} seed={i % projects.length} dark />
                     </figure>
 
                     <div className={styles.body}>
@@ -365,7 +365,7 @@ export default function WorkTornado() {
             <li key={project.n}>
               <Link href="/projects" className={styles.cardInner}>
                 <figure className={styles.media}>
-                  <Media seed={i} dark />
+                  <Media src={project.image} seed={i} dark />
                 </figure>
                 <div className={styles.body}>
                   <p className={styles.cardMeta}>

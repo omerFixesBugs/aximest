@@ -64,7 +64,7 @@ export default function PrivacyPage() {
           body: (
             <p>
               Privacy questions can be directed to hello@aximest.com or to{" "}
-              {site.name} at the Montreal address listed in the footer.
+              {site.name} at the Dhaka address listed in the footer.
             </p>
           ),
         },

@@ -50,14 +50,16 @@ export function Logo({ className = "" }: { className?: string }) {
   );
 }
 
-/** Angular Aximest monogram — two chevrons forming an "A". */
+/** Aximest symbol — from public/Logo/logo/aximest-symbol-*.svg, inked in currentColor. */
 export function Mark({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 48 40" fill="none" className={className} width="100%" height="100%">
-      <path d="M0 40 14.5 0h8.2L8.2 40H0Z" fill="currentColor" />
-      <path d="M17.6 40 32.1 0h8.2L25.8 40h-8.2Z" fill="currentColor" />
-      <path d="M33.4 22.6h13.9L44.6 30H30.7l2.7-7.4Z" fill="currentColor" />
-      <circle cx="44" cy="36.5" r="3.2" fill="currentColor" />
+    <svg viewBox="2 4 78 90" fill="none" className={className} width="100%" height="100%">
+      <polygon
+        points="50,50 30,8 6,90 50,50 76,26 62,75"
+        stroke="currentColor"
+        strokeWidth="4.5"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

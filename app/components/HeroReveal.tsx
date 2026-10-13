@@ -3,51 +3,22 @@
 import { useEffect, useRef } from "react";
 import Button from "./Button";
 import ScrambleText from "./Scramble";
+import LogoScene from "./LogoScene";
 import { ArrowRight } from "./Icons";
 import { services, site } from "../lib/site";
 import styles from "./HeroReveal.module.css";
 
 const STATEMENT =
-  "A North American team of specialists with profound technical expertise.";
+  "A team of specialists with profound technical expertise.";
 
 /**
- * The reveal that the red hero slides off. The chrome mark is pinned behind
+ * The reveal that the red hero slides off. The 3D chrome symbol is pinned behind
  * for the whole section, so the grid labels and then the opening statement
  * scroll over it rather than sitting in a section of their own.
  */
 export default function HeroReveal() {
   const section = useRef<HTMLElement>(null);
-  const mark = useRef<HTMLSpanElement>(null);
   const copy = useRef<HTMLDivElement>(null);
-
-  // mark tilts a little with scroll
-  useEffect(() => {
-    const el = section.current;
-    const node = mark.current;
-    if (!el || !node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let frame = 0;
-    const update = () => {
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const p = Math.max(-1, Math.min(1, 1 - (rect.top + rect.height / 2) / vh));
-      node.style.setProperty("--p", p.toFixed(4));
-      frame = 0;
-    };
-    const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
 
   // statement words warm from grey to full contrast as the block rises
   useEffect(() => {
@@ -94,12 +65,10 @@ export default function HeroReveal() {
 
   return (
     <section className={styles.reveal} ref={section} id="intro">
-      {/* chrome mark, pinned behind everything in this section */}
+      {/* 3D chrome symbol, pinned behind everything in this section */}
       <div className={styles.media} aria-hidden="true">
         <div className={styles.mediaWrapper}>
-          <span className={styles.mark} ref={mark}>
-            {site.name.charAt(0)}
-          </span>
+          <LogoScene section={section} weight="bold" />
         </div>
       </div>
 

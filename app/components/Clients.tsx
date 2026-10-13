@@ -111,7 +111,7 @@ export default function Clients() {
                   </ScrambleText>
 
                   <figure className={styles.media}>
-                    <Media seed={i} />
+                    <Media src={client.image} seed={i} />
                   </figure>
 
                   <h3 className={styles.title}>{client.title}</h3>

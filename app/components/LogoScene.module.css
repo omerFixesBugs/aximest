@@ -1,0 +1,29 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.scene canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 1.2s var(--ease-power3-out),
+    transform 1.6s var(--ease-power3-out);
+}
+
+.scene[data-state="ready"] canvas {
+  opacity: 1;
+  transform: none;
+}
+
+/* no WebGL: the flat symbol, same footprint */
+.fallback {
+  height: 78%;
+  aspect-ratio: 78 / 90;
+  color: #9a9ca1;
+}

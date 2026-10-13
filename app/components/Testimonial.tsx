@@ -59,7 +59,7 @@ export default function Testimonial() {
     <section className={styles.section} ref={ref}>
       <div className={styles.bg} aria-hidden="true">
         <div className={styles.bgWrapper} ref={bg}>
-          <Media seed={4} dark />
+          <Media src={testimonial.image} seed={4} dark sizes="100vw" />
         </div>
       </div>
 

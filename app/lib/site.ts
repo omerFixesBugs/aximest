@@ -74,6 +74,7 @@ export const clients = [
     description:
       "Empowering startups with agile development and cost-effective solutions, we excel in product thinking, rapid prototyping, MVP development, and comprehensive mobile and SaaS solutions.",
     cta: "Build with us",
+    image: "/images/clients/startups.jpg",
   },
   {
     index: "I/002",
@@ -81,6 +82,7 @@ export const clients = [
     description:
       "Our Enterprise Services streamline operations by building new products, deploying ERPs, and enabling access to new technologies. With diligent monitoring and support we safeguard your business around the clock.",
     cta: "Shape what's next",
+    image: "/images/clients/enterprises.jpg",
   },
   {
     index: "I/003",
@@ -88,6 +90,7 @@ export const clients = [
     description:
       "From establishing Layer 1 and Layer 2 protocols to crafting intricate smart contracts and creating engaging frontend, we spearhead projects forward, whether it's a meme coin or a complex zk-proof system.",
     cta: "Take Your Product Further",
+    image: "/images/clients/web3.jpg",
   },
 ];
 
@@ -163,16 +166,17 @@ export const testimonial = {
   author: "Eugen Baicea",
   role: "SR. Producer",
   company: "Amber Studio",
+  image: "/images/testimonial.jpg",
 };
 
 export const offices = [
   {
-    country: "Canada",
-    lines: ["460 Saint-Catherine W.", "Suite 305", "Montreal, Quebec", "H3B 1A6"],
+    country: "Dhaka",
+    lines: ["House -31/A (Lift-1)", "Road-21, Nikunjo-2", "Khilkhet", "Dhaka-1229"],
   },
   {
-    country: "United States",
-    lines: ["333 SE 2nd Avenue", "Suite 2000", "Miami Florida", "33131"],
+    country: "Chittagong",
+    lines: ["Eaukut Villa", "Road No. 6, House No. 6", "Nasirabad Housing Society", "Chittagong"],
   },
 ];
 
@@ -189,17 +193,17 @@ export const nav = [
    --------------------------------------------------------------- */
 
 export const projects = [
-  { n: "01", name: "Styllar", kind: "Marketplace", group: "Web 3",
+  { n: "01", name: "Styllar", kind: "Marketplace", group: "Web 3", image: "/images/projects/styllar.jpg",
     body: "A cross-chain marketplace with on-chain royalties, batch listings and a settlement layer built for volume." },
-  { n: "02", name: "Sonr", kind: "Layer 1", group: "Web 3",
+  { n: "02", name: "Sonr", kind: "Layer 1", group: "Web 3", image: "/images/projects/sonr.jpg",
     body: "Protocol design, validator tooling and an SDK that lets application teams ship without touching consensus." },
-  { n: "03", name: "Formula E: High Voltage", kind: "GameFi", group: "Web 3",
+  { n: "03", name: "Formula E: High Voltage", kind: "GameFi", group: "Web 3", image: "/images/projects/formula-e.jpg",
     body: "A racing title with tokenised assets, an in-game economy and a custody layer players never have to think about." },
-  { n: "04", name: "Northbound Health", kind: "Platform", group: "Web 2",
+  { n: "04", name: "Northbound Health", kind: "Platform", group: "Web 2", image: "/images/projects/northbound-health.jpg",
     body: "A HIPAA-compliant care platform: scheduling, records and billing consolidated into one operational system." },
-  { n: "05", name: "Cargoline", kind: "Logistics", group: "Web 2",
+  { n: "05", name: "Cargoline", kind: "Logistics", group: "Web 2", image: "/images/projects/cargoline.jpg",
     body: "Fleet telemetry, route optimisation and a dispatch console replacing a decade of spreadsheets." },
-  { n: "06", name: "Ledgerbase", kind: "Fintech", group: "Web 2",
+  { n: "06", name: "Ledgerbase", kind: "Fintech", group: "Web 2", image: "/images/projects/ledgerbase.jpg",
     body: "A double-entry ledger and reconciliation engine handling millions of daily postings." },
 ];
 
@@ -241,6 +245,7 @@ export const podcasts = [
   {
     title: "The Innovation Blueprint",
     host: "Phil Therien",
+    image: "/images/podcasts/innovation-blueprint.jpg",
     status: "English only",
     tags: ["Manufacturing", "AI", "Cloud", "Systems", "Leadership", "Energy", "Scaling"],
     body: "Real talk about what's broken and how the best operators are fixing it. Conversations with founders and technical leaders reshaping modern industries.",
@@ -248,6 +253,7 @@ export const podcasts = [
   {
     title: "The Interchain Talk Show",
     host: "Utkarsh Varma",
+    image: "/images/podcasts/interchain-talk-show.jpg",
     status: "Coming soon",
     tags: ["Blockchain", "L1s", "L2s", "Privacy", "Interchain", "DeFi", "RWA"],
     body: "From technical deep-dives to industry insights, we break down complex topics into engaging discussions that matter to developers and investors alike.",
@@ -255,14 +261,14 @@ export const podcasts = [
 ];
 
 export const articles = [
-  { id: "ART/766", date: "Mar 4, 2026", tags: ["Healthcare", "Machine Learning"], title: "Machine Learning in Medical Imaging: Uses & Challenges" },
-  { id: "ART/765", date: "Mar 4, 2026", tags: ["Machine Learning", "Retail"], title: "Machine Learning in Retail: Use Cases, Benefits & Guide" },
-  { id: "ART/764", date: "Mar 4, 2026", tags: ["Logistics", "Machine Learning"], title: "Machine Learning in Logistics: From Data to Delivery" },
-  { id: "ART/763", date: "Mar 3, 2026", tags: ["Machine Learning", "Telecom"], title: "Understanding Machine Learning in Telecommunications Systems" },
-  { id: "ART/762", date: "Mar 1, 2026", tags: ["Blockchain", "Security"], title: "Zero-Knowledge Proofs Without the Hand-Waving" },
-  { id: "ART/761", date: "Feb 26, 2026", tags: ["Architecture"], title: "Designing Systems That Survive Their Second Year" },
-  { id: "ART/760", date: "Feb 24, 2026", tags: ["AI", "Product"], title: "Shipping LLM Features Users Actually Trust" },
-  { id: "ART/759", date: "Feb 20, 2026", tags: ["DevOps"], title: "The Deployment Pipeline as a Product" },
+  { id: "ART/766", image: "/images/articles/ml-medical-imaging.jpg", date: "Mar 4, 2026", tags: ["Healthcare", "Machine Learning"], title: "Machine Learning in Medical Imaging: Uses & Challenges" },
+  { id: "ART/765", image: "/images/articles/ml-retail.jpg", date: "Mar 4, 2026", tags: ["Machine Learning", "Retail"], title: "Machine Learning in Retail: Use Cases, Benefits & Guide" },
+  { id: "ART/764", image: "/images/articles/ml-logistics.jpg", date: "Mar 4, 2026", tags: ["Logistics", "Machine Learning"], title: "Machine Learning in Logistics: From Data to Delivery" },
+  { id: "ART/763", image: "/images/articles/ml-telecom.jpg", date: "Mar 3, 2026", tags: ["Machine Learning", "Telecom"], title: "Understanding Machine Learning in Telecommunications Systems" },
+  { id: "ART/762", image: "/images/articles/zero-knowledge.jpg", date: "Mar 1, 2026", tags: ["Blockchain", "Security"], title: "Zero-Knowledge Proofs Without the Hand-Waving" },
+  { id: "ART/761", image: "/images/articles/system-design.jpg", date: "Feb 26, 2026", tags: ["Architecture"], title: "Designing Systems That Survive Their Second Year" },
+  { id: "ART/760", image: "/images/articles/llm-trust.jpg", date: "Feb 24, 2026", tags: ["AI", "Product"], title: "Shipping LLM Features Users Actually Trust" },
+  { id: "ART/759", image: "/images/articles/deployment-pipeline.jpg", date: "Feb 20, 2026", tags: ["DevOps"], title: "The Deployment Pipeline as a Product" },
 ];
 
 /** Extra copy for each service detail page. */

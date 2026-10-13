@@ -33,7 +33,7 @@ export default function ServiceView({ service }: { service: Service }) {
         {/* media and wordmark share a bottom edge, the wordmark in front */}
         <div className={styles.heroStage}>
           <figure className={styles.heroMedia}>
-            <Media seed={3} dark />
+            <Media src={`/images/services/${service.id}.jpg`} seed={3} dark priority />
             <figcaption className={styles.heroCounter}>
               <ScrambleText delay={0.2}>{`${service.count} Services`}</ScrambleText>
             </figcaption>

@@ -1,16 +1,47 @@
+import Image from "next/image";
+
 /**
- * Monochrome abstract stand-in for photography. Swap these for real <Image>
- * assets by replacing the component body — the surrounding layout is unchanged.
+ * Photography slot. With `src` it renders the photo (from public/images, see
+ * CREDITS.md there) cropped to fill its box and toned down to the site's
+ * monochrome palette; without one it falls back to a monochrome abstract
+ * stand-in. Either way it is the full size of its parent.
  */
 export default function Media({
+  src,
   seed = 0,
   className = "",
   dark = false,
+  sizes = "(max-width: 899px) 100vw, 50vw",
+  priority = false,
 }: {
+  src?: string;
   seed?: number;
   className?: string;
   dark?: boolean;
+  sizes?: string;
+  priority?: boolean;
 }) {
+  if (src) {
+    return (
+      <Image
+        src={src}
+        alt=""
+        width={1600}
+        height={1067}
+        sizes={sizes}
+        priority={priority}
+        className={className}
+        draggable={false}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          filter: dark ? "grayscale(1) brightness(0.72) contrast(1.05)" : "grayscale(1) contrast(1.05)",
+        }}
+      />
+    );
+  }
+
   const id = `m${seed}`;
   const rot = -18 + seed * 14;
 

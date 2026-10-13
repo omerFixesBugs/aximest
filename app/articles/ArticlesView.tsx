@@ -108,7 +108,7 @@ export default function ArticlesView() {
                 </ScrambleText>
                 <h3 className={styles.title}>{article.title}</h3>
                 <figure className={styles.thumb}>
-                  <Media seed={i} />
+                  <Media src={article.image} seed={i} sizes="(max-width: 899px) 100vw, 33vw" />
                   <figcaption>{article.title}</figcaption>
                 </figure>
               </div>

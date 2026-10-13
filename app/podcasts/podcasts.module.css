@@ -92,11 +92,11 @@
   background: var(--black);
 }
 
-.cover :global(svg) {
+.cover :global(:is(svg, img)) {
   transition: transform 1.1s var(--ease-power3-out);
 }
 
-.card:hover .cover :global(svg) { transform: scale(1.04); }
+.card:hover .cover :global(:is(svg, img)) { transform: scale(1.04); }
 
 .coverLabel {
   position: absolute;

@@ -6,7 +6,7 @@ import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Start a project with ${site.name}. Offices in Montreal and Miami.`,
+  description: `Start a project with ${site.name}. Offices in Dhaka and Chittagong.`,
 };
 
 export default function ContactPage() {

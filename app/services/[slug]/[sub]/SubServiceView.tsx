@@ -64,7 +64,7 @@ export default function SubServiceView({
         </div>
 
         <figure className={styles.heroMedia}>
-          <Media seed={3} dark />
+          <Media src={`/images/services/${service.id}.jpg`} seed={3} dark priority />
           <figcaption className={styles.heroMediaLabel}>
             <ScrambleText delay={0.2}>{detail.abbr}</ScrambleText>
             <ScrambleText delay={0.25}>{item.n}</ScrambleText>

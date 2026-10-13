@@ -175,8 +175,8 @@
   line-height: 1.15;
 }
 
-.thumb :global(svg) { transition: transform 1s var(--ease-power3-out); }
-.card:hover .thumb :global(svg) { transform: scale(1.05); }
+.thumb :global(:is(svg, img)) { transition: transform 1s var(--ease-power3-out); }
+.card:hover .thumb :global(:is(svg, img)) { transform: scale(1.05); }
 
 .empty {
   padding: var(--clamp-40) 0;

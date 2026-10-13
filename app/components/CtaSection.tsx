@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Button from "./Button";
-import Media from "./Media";
+import LogoScene from "./LogoScene";
+import { useParallax } from "../hooks/useInView";
 import { ArrowRight } from "./Icons";
 import styles from "./CtaSection.module.css";
 
@@ -15,6 +16,8 @@ export default function CtaSection() {
   const ref = useRef<HTMLElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
   const drift = useRef<HTMLSpanElement>(null);
+  const strip = useRef<HTMLDivElement>(null);
+  const sceneDrift = useParallax<HTMLDivElement>(0.22);
 
   useEffect(() => {
     const el = ref.current;
@@ -129,8 +132,12 @@ export default function CtaSection() {
         </div>
       </div>
 
-      <div className={styles.strip} aria-hidden="true">
-        <Media seed={2} />
+      {/* the 3D symbol, oversized and drifting against the scroll, cropped by
+          the strip as it hands off into the footer */}
+      <div className={styles.strip} ref={strip} aria-hidden="true">
+        <div className={styles.stripScene} ref={sceneDrift}>
+          <LogoScene section={strip} weight="bold" fill={0.86} />
+        </div>
       </div>
     </section>
   );

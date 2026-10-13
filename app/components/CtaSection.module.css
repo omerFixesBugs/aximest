@@ -112,12 +112,26 @@
 
 /* ---------- chrome strip into the footer ---------- */
 .strip {
-  height: max(160px, 22.2vw);
-  background: var(--grey-300);
+  position: relative;
+  height: max(360px, 38vw);
+  background: radial-gradient(120% 90% at 50% 25%, #f4f4f5 0%, #d6d7da 45%, #b9babe 100%);
   overflow: hidden;
 }
 
-.strip :global(svg) { width: 100%; height: 100%; filter: invert(1) contrast(0.8); }
+/* half again as tall as the strip and nudged off-centre, so the symbol runs
+   past its edges; useParallax slides it against the scroll */
+.stripScene {
+  position: absolute;
+  top: -25%;
+  left: 12%;
+  width: 100%;
+  height: 150%;
+  will-change: transform;
+}
+
+@media (max-width: 899px) {
+  .stripScene { left: 0; }
+}
 
 @media (max-width: 899px) {
   .grid { grid-template-rows: auto auto auto auto auto; }
