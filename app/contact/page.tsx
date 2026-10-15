@@ -6,7 +6,7 @@ import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Start a project with ${site.name}. Offices in Dhaka and Chittagong.`,
+  description: `Start a project with ${site.name}: send us a message or book a call at a time that suits you.`,
 };
 
 export default function ContactPage() {
@@ -16,7 +16,7 @@ export default function ContactPage() {
 
       <div className={styles.panel}>
         <p className={styles.lead}>
-          Engage the neural link and let your signal reach us across the void.
+          Tell us what you’re building, or book a call and we’ll ring you.
         </p>
 
         <div className={styles.rule} aria-hidden="true" />
@@ -38,8 +38,8 @@ export default function ContactPage() {
                   <span key={line}>{line}</span>
                 ))}
               </address>
-              <a href={`tel:${site.phone.replace(/\D/g, "")}`} className={styles.officeLink}>
-                {site.phone}
+              <a href={`tel:+88${office.phone}`} className={styles.officeLink}>
+                {office.phone}
               </a>
             </div>
           ))}

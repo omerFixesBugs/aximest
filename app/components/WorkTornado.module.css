@@ -124,6 +124,8 @@
   top: 50%;
   left: 50%;
   visibility: hidden;
+  /* the stage takes every press; see ctaAt() for how Explore is clicked */
+  pointer-events: none;
   transform-style: preserve-3d;
   backface-visibility: visible;
   will-change: transform, filter;

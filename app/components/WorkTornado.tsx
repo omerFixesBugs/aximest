@@ -90,6 +90,8 @@ export default function WorkTornado() {
       cardGap: 0,
       em: 16,
       stageHeight: 0,
+      /** The card nearest the front; its Explore is the one that can be clicked. */
+      front: cards[0],
     };
 
     function measure() {
@@ -123,6 +125,7 @@ export default function WorkTornado() {
 
     function render() {
       const radius = ORBIT_DEPTH * state.em;
+      let nearest = Infinity;
 
       cards.forEach((card, slot) => {
         // Wrap each slot into [-amount/2, amount/2] so the helix is endless:
@@ -146,9 +149,10 @@ export default function WorkTornado() {
           `brightness(${1 - back * BACK_DARKNESS}) blur(${back * BACK_BLUR}em)`;
         card.style.zIndex = String(Math.round(centre * 1000));
         card.style.visibility = "visible";
-        // Only the card squarely at the front takes the pointer; the ones
-        // turned away sit under it and would otherwise swallow the press.
-        card.style.pointerEvents = Math.abs(index) < 0.5 ? "auto" : "none";
+        if (Math.abs(index) < nearest) {
+          nearest = Math.abs(index);
+          state.front = card;
+        }
       });
     }
 
@@ -194,6 +198,24 @@ export default function WorkTornado() {
     let lastY = 0;
     let travelled = 0;
 
+    // Inside a preserve-3d stage the browser hit-tests to the stage, never the
+    // transformed card, so the front card's Explore is hit-tested by hand.
+    const ctaAt = (x: number, y: number) => {
+      const cta = state.front.querySelector<HTMLElement>(`.${styles.cardCta}`);
+      if (!cta) return null;
+      const r = cta.getBoundingClientRect();
+      return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom ? cta : null;
+    };
+
+    const onHover = (e: PointerEvent) => {
+      if (pointerId !== null) return;
+      const over = Boolean(ctaAt(e.clientX, e.clientY));
+      stageEl.style.cursor = over ? "pointer" : "grab";
+      // lets the custom cursor grow as it does over any other link
+      if (over) stageEl.dataset.cursor = "hover";
+      else delete stageEl.dataset.cursor;
+    };
+
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       pointerId = e.pointerId;
@@ -221,6 +243,8 @@ export default function WorkTornado() {
       if (pointerId !== e.pointerId) return;
       pointerId = null;
       stageEl.style.cursor = "grab";
+      // a press that never became a drag is a click
+      if (travelled < DRAG_MINIMUM) ctaAt(e.clientX, e.clientY)?.click();
     };
 
     const onScroll = () => readScroll();
@@ -244,6 +268,7 @@ export default function WorkTornado() {
     render();
 
     stageEl.addEventListener("pointerdown", onDown);
+    stageEl.addEventListener("pointermove", onHover);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     window.addEventListener("pointercancel", onUp);
@@ -255,6 +280,7 @@ export default function WorkTornado() {
       clearTimeout(resizeTimer);
       cancelAnimationFrame(frame);
       stageEl.removeEventListener("pointerdown", onDown);
+      stageEl.removeEventListener("pointermove", onHover);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointercancel", onUp);
@@ -299,11 +325,11 @@ export default function WorkTornado() {
           </p>
 
           {/* 3D stage. Card size, orbit radius and perspective all key off this
-              one font-size, so the helix scales with the viewport. It takes no
-              pointer events itself: inside a preserve-3d context the browser
-              will hit-test to this container rather than to the transformed
-              card under the cursor. Transparent here, the press reaches the
-              card, and render() decides which card may take it. */}
+              one font-size, so the helix scales with the viewport. Inside a
+              preserve-3d context the browser hit-tests to this container
+              rather than the transformed card under the cursor, so the stage
+              takes every press and ctaAt() works out whether it landed on the
+              front card's Explore. */}
           <div className={styles.stage} ref={stage}>
             {deck.map((project, i) => {
               // The deck repeats to fill the stage; only the first pass is in

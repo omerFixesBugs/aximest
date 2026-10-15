@@ -1,12 +1,15 @@
 export const site = {
   name: "Aximest",
+  url: "https://www.aximest.com",
+  title: "Aximest — Custom Software, Web Apps & AI Automation",
+  description:
+    "Aximest builds custom software that grows your business: web and mobile apps, AI automation, and ERP, CRM and dashboard platforms that run your operations.",
   mark: "Axmst®",
   tagline: "Development Labs",
-  city: "Mtl (Can)",
+  city: "Worldwide",
   code: "/0026",
   codeLabel: "Engineering_",
   contactCode: "F034671",
-  phone: "(514) 874-3224",
   since: "In business since 2016",
 };
 
@@ -21,8 +24,35 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    id: "advisory",
+    id: "product-development",
     index: "S/001",
+    title: "Product Development",
+    description:
+      "Bring market-ready products to life: prototypes & MVPs, SaaS, web and mobile applications, from planning and design to coding, testing, and ongoing maintenance.",
+    count: 7,
+    slug: "/services/product-development",
+  },
+  {
+    id: "ai",
+    index: "S/002",
+    title: "Artificial Intelligence (AI)",
+    description:
+      "Enhance operations with AI: strategy, LLM integration, automated decision systems, and OCR technology, tailored to optimize performance and efficiency.",
+    count: 10,
+    slug: "/services/artificial-intelligence",
+  },
+  {
+    id: "enterprise-software",
+    index: "S/003",
+    title: "Enterprise Software",
+    description:
+      "Scale effectively: streamline operations with customized platforms, enhance productivity through advanced integrations, and secure your infrastructure with robust support systems.",
+    count: 9,
+    slug: "/services/enterprise-software",
+  },
+  {
+    id: "advisory",
+    index: "S/004",
     title: "Advisory",
     description:
       "Gain strategic insights from our fractional CTOs, benefit from comprehensive technical reviews, and accelerate development with expert backend, frontend, and DevOps solutions.",
@@ -31,39 +61,12 @@ export const services: Service[] = [
   },
   {
     id: "blockchain",
-    index: "S/002",
+    index: "S/005",
     title: "Blockchain",
     description:
       "Delivering secure immutable data, smart contract development, tokenomics, and zero-knowledge proof technologies to optimize security, transparency, and financial operations.",
     count: 17,
     slug: "/services/blockchain",
-  },
-  {
-    id: "product-development",
-    index: "S/003",
-    title: "Product Development",
-    description:
-      "Bring market-ready products to life: prototypes & MVPs, SaaS, web and mobile applications, from planning and design to coding, testing, and ongoing maintenance.",
-    count: 7,
-    slug: "/services/product-development",
-  },
-  {
-    id: "enterprise-software",
-    index: "S/004",
-    title: "Enterprise Software",
-    description:
-      "Scale effectively: streamline operations with customized platforms, enhance productivity through advanced integrations, and secure your infrastructure with robust support systems.",
-    count: 9,
-    slug: "/services/enterprise-software",
-  },
-  {
-    id: "ai",
-    index: "S/005",
-    title: "Artificial Intelligence (AI)",
-    description:
-      "Enhance operations with AI: strategy, LLM integration, automated decision systems, and OCR technology, tailored to optimize performance and efficiency.",
-    count: 10,
-    slug: "/services/artificial-intelligence",
   },
 ];
 
@@ -173,10 +176,12 @@ export const offices = [
   {
     country: "Dhaka",
     lines: ["House -31/A (Lift-1)", "Road-21, Nikunjo-2", "Khilkhet", "Dhaka-1229"],
+    phone: "01619547969",
   },
   {
     country: "Chittagong",
     lines: ["Eaukut Villa", "Road No. 6, House No. 6", "Nasirabad Housing Society", "Chittagong"],
+    phone: "01716222093",
   },
 ];
 

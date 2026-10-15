@@ -77,14 +77,55 @@
   border-top: var(--border);
 }
 
-.form {
+.forms {
   grid-column: 2 / span 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--clamp-16);
+}
+
+/* message / call switch */
+.switch {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px;
+  border: 1px solid var(--black);
+  border-radius: var(--clamp-4);
+}
+
+.switch button {
+  padding: var(--clamp-8) var(--clamp-16);
+  border: 0;
+  border-radius: var(--clamp-3);
+  background: transparent;
+  color: var(--black);
+  font-family: var(--font-mono);
+  font-size: var(--clamp-12);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-power2-out), color 0.3s var(--ease-power2-out);
+}
+
+.switch button[aria-pressed="true"] { background: var(--black); color: var(--white); }
+
+.switch button:focus-visible { outline: 1px solid var(--black); outline-offset: 2px; }
+
+.switchNote {
+  margin-bottom: var(--clamp-24);
+  font-size: var(--clamp-16);
+  color: var(--grey-800);
+}
+
+.form {
   display: flex;
   flex-direction: column;
   gap: var(--clamp-24);
 }
 
 .field { display: flex; flex-direction: column; gap: var(--clamp-6); }
+
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .label {
   font-family: var(--font-mono);
@@ -147,6 +188,8 @@
   color: var(--grey-800);
 }
 
+.note[data-error="true"] { color: #b3261e; }
+
 .submit { min-width: var(--clamp-215, 214px); }
 
 /* ---------- offices ---------- */
@@ -205,10 +248,10 @@
 
 @media (max-width: 899px) {
   .panel {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: var(--clamp-40) var(--clamp-16);
   }
-  .lead, .form { grid-column: 1; }
+  .lead, .forms { grid-column: 1; }
   .rule { margin-inline: calc(var(--clamp-16) * -1); }
   .detailsTitle { gap: var(--clamp-24); }
 }

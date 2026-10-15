@@ -38,10 +38,6 @@ export default function Footer() {
             <span className={styles.brandText}>{site.name.toUpperCase()}®</span>
           </Link>
 
-          <Link href="/fr" className={styles.lang}>
-            <RollText>Français</RollText>
-          </Link>
-
           <div className={styles.badges}>
             <Badge top="Est" main="2016" />
             <Badge main="SOC2" sub="Type II" />
@@ -151,8 +147,8 @@ export default function Footer() {
             {office.lines.map((l) => (
               <span key={l}>{l}</span>
             ))}
-            <a href={`tel:${site.phone.replace(/\D/g, "")}`} className={styles.link}>
-              <RollText>{site.phone}</RollText>
+            <a href={`tel:+88${office.phone}`} className={styles.link}>
+              <RollText>{office.phone}</RollText>
             </a>
           </address>
         ))}
