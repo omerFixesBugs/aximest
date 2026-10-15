@@ -359,6 +359,12 @@ body[data-theme="dark"] .header:not([data-open="true"]) .cta {
 
 .subLink:hover .subArrow { opacity: 1; transform: none; }
 
+/* small phones: the long service names need the indent back */
+@media (max-width: 479px) {
+  .subLink { padding-left: var(--clamp-40); font-size: 15px; }
+  .subNum { display: none; }
+}
+
 /* ---------- red foot ---------- */
 .panelCta {
   display: grid;

@@ -39,13 +39,6 @@
   letter-spacing: -0.035em;
 }
 
-.lang {
-  font-family: var(--font-mono);
-  font-size: var(--clamp-16);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-}
-
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -223,4 +216,9 @@
   .legal,
   .credit { grid-column: 1; }
   .legal { flex-direction: row; gap: var(--clamp-16); }
+}
+
+/* two columns are too narrow for the longer service names */
+@media (max-width: 599px) {
+  .groupA { grid-column: 1 / -1; }
 }

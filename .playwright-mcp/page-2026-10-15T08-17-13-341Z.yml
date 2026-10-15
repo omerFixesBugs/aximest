@@ -1,0 +1,899 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - generic [ref=e2]:
+      - generic [ref=e3]:
+        - link [ref=e4] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e8]:
+          - generic [ref=e9]: Axmst®
+          - generic [ref=e10]: DevelopmentLabs
+      - button "Open menu" [ref=e11] [cursor=pointer]
+    - paragraph [ref=e15]: An Elite Team ofSoftware Engineers
+    - link "Let's Talk" [ref=e16] [cursor=pointer]:
+      - /url: /contact
+      - generic [ref=e17]:
+        - emphasis [aria-hidden]: Let's Talk
+        - emphasis [ref=e18]: Let's Talk
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic "Axmst®" [ref=e26]
+        - generic "Dhaka (BD)" [ref=e27]
+        - generic "/0026" [ref=e28]
+        - generic "Engineering_" [ref=e29]
+      - generic [ref=e30]:
+        - heading "We build custom software that grows your business." [level=1] [ref=e31]:
+          - generic [ref=e32]: We build custom software
+          - generic [ref=e33]: that grows your business.
+        - generic [ref=e34]:
+          - paragraph [ref=e35]: Full-stack web & mobile apps, AI automation and business platforms — built to run your operations, track every number and scale with you.
+          - list [ref=e36]:
+            - listitem [ref=e37]: Custom Software
+            - listitem [ref=e38]: Web & Mobile Apps
+            - listitem [ref=e39]: AI Automation
+            - listitem [ref=e40]: ERP / CRM / Dashboards
+      - generic [ref=e42]:
+        - generic [ref=e44]:
+          - text: AXIMEST
+          - emphasis [ref=e45]: ®
+        - link "/ Explore" [ref=e46] [cursor=pointer]:
+          - /url: "#intro"
+          - generic [ref=e47]: /
+          - generic [ref=e48]: Explore
+    - generic [ref=e52]:
+      - generic [aria-hidden]:
+        - generic:
+          - generic:
+            - generic: Axmst®
+            - list:
+              - listitem: Advisory
+              - listitem: Blockchain
+              - listitem: Product Development
+              - listitem: Enterprise Software
+              - listitem: Artificial Intelligence (AI)
+            - generic: /0026
+            - generic: Engineering_
+      - generic [ref=e57]:
+        - paragraph [ref=e58]:
+          - generic "Who we are" [ref=e59]
+          - generic [ref=e60]: /
+        - generic [ref=e61]:
+          - heading "A team of specialists with profound technical expertise." [level=1] [ref=e62]
+          - paragraph [aria-hidden] [ref=e63]:
+            - generic [ref=e64]: A
+            - generic [ref=e65]: team
+            - generic [ref=e66]: of
+            - generic [ref=e67]: specialists
+            - generic [ref=e68]: with
+            - generic [ref=e69]: profound
+            - generic [ref=e70]: technical
+            - generic [ref=e71]: expertise.
+          - link "Contact Us" [ref=e73] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=e74]:
+              - emphasis [aria-hidden]: Contact Us
+              - emphasis [ref=e75]: Contact Us
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: /
+          - generic "Services" [ref=e83]
+        - heading "Tech stacks for a rapidly evolving world:" [level=2] [ref=e84]:
+          - generic [ref=e85]: Tech
+          - generic [ref=e87]: stacks
+          - generic [ref=e89]: for
+          - generic [ref=e91]: a
+          - generic [ref=e93]: rapidly
+          - generic [ref=e95]: evolving
+          - generic [ref=e97]: "world:"
+        - generic "/005" [ref=e100]
+      - list [ref=e101]:
+        - listitem [ref=e102]:
+          - article [ref=e103]:
+            - generic "S/001" [ref=e104]
+            - heading [level=3] [ref=e105]:
+              - link "Advisory" [ref=e106] [cursor=pointer]:
+                - /url: /services/advisory
+            - generic [ref=e109]:
+              - paragraph [ref=e110]: Gain strategic insights from our fractional CTOs, benefit from comprehensive technical reviews, and accelerate development with expert backend, frontend, and DevOps solutions.
+              - link "Explore 9 Services" [ref=e112] [cursor=pointer]:
+                - /url: /services/advisory
+                - generic [ref=e113]:
+                  - emphasis [aria-hidden]: Explore 9 Services
+                  - emphasis [ref=e114]: Explore 9 Services
+            - link [aria-hidden] [ref=e118] [cursor=pointer]:
+              - /url: /services/advisory
+        - listitem [ref=e126]:
+          - article [ref=e127]:
+            - generic "S/002" [ref=e128]
+            - heading [level=3] [ref=e129]:
+              - link "Blockchain" [ref=e130] [cursor=pointer]:
+                - /url: /services/blockchain
+            - generic [ref=e133]:
+              - paragraph [ref=e134]: Delivering secure immutable data, smart contract development, tokenomics, and zero-knowledge proof technologies to optimize security, transparency, and financial operations.
+              - link "Explore 17 Services" [ref=e136] [cursor=pointer]:
+                - /url: /services/blockchain
+                - generic [ref=e137]:
+                  - emphasis [aria-hidden]: Explore 17 Services
+                  - emphasis [ref=e138]: Explore 17 Services
+            - link [aria-hidden] [ref=e142] [cursor=pointer]:
+              - /url: /services/blockchain
+        - listitem [ref=e150]:
+          - article [ref=e151]:
+            - generic "S/003" [ref=e152]
+            - heading [level=3] [ref=e153]:
+              - link "Product Development" [ref=e154] [cursor=pointer]:
+                - /url: /services/product-development
+            - generic [ref=e157]:
+              - paragraph [ref=e158]: "Bring market-ready products to life: prototypes & MVPs, SaaS, web and mobile applications, from planning and design to coding, testing, and ongoing maintenance."
+              - link "Explore 7 Services" [ref=e160] [cursor=pointer]:
+                - /url: /services/product-development
+                - generic [ref=e161]:
+                  - emphasis [aria-hidden]: Explore 7 Services
+                  - emphasis [ref=e162]: Explore 7 Services
+            - link [aria-hidden] [ref=e166] [cursor=pointer]:
+              - /url: /services/product-development
+        - listitem [ref=e175]:
+          - article [ref=e176]:
+            - generic "S/004" [ref=e177]
+            - heading [level=3] [ref=e178]:
+              - link "Enterprise Software" [ref=e179] [cursor=pointer]:
+                - /url: /services/enterprise-software
+            - generic [ref=e182]:
+              - paragraph [ref=e183]: "Scale effectively: streamline operations with customized platforms, enhance productivity through advanced integrations, and secure your infrastructure with robust support systems."
+              - link "Explore 9 Services" [ref=e185] [cursor=pointer]:
+                - /url: /services/enterprise-software
+                - generic [ref=e186]:
+                  - emphasis [aria-hidden]: Explore 9 Services
+                  - emphasis [ref=e187]: Explore 9 Services
+            - link [aria-hidden] [ref=e191] [cursor=pointer]:
+              - /url: /services/enterprise-software
+        - listitem [ref=e198]:
+          - article [ref=e199]:
+            - generic "S/005" [ref=e200]
+            - heading [level=3] [ref=e201]:
+              - link "Artificial Intelligence (AI)" [ref=e202] [cursor=pointer]:
+                - /url: /services/artificial-intelligence
+            - generic [ref=e205]:
+              - paragraph [ref=e206]: "Enhance operations with AI: strategy, LLM integration, automated decision systems, and OCR technology, tailored to optimize performance and efficiency."
+              - link "Explore 10 Services" [ref=e208] [cursor=pointer]:
+                - /url: /services/artificial-intelligence
+                - generic [ref=e209]:
+                  - emphasis [aria-hidden]: Explore 10 Services
+                  - emphasis [ref=e210]: Explore 10 Services
+            - link [aria-hidden] [ref=e214] [cursor=pointer]:
+              - /url: /services/artificial-intelligence
+    - generic [ref=e223]:
+      - generic [ref=e224]:
+        - generic [ref=e225]:
+          - generic [ref=e226]: /
+          - generic "Our Clients" [ref=e227]
+        - heading "We engage with:" [level=2] [ref=e228]:
+          - generic [ref=e229]: We
+          - generic [ref=e231]: engage
+          - generic [ref=e233]: "with:"
+        - generic [ref=e235]:
+          - generic "/003" [ref=e236]
+          - link "View all" [ref=e238] [cursor=pointer]:
+            - /url: /projects
+            - generic [ref=e239]:
+              - emphasis [aria-hidden]: View all
+              - emphasis [ref=e240]: View all
+      - generic [ref=e244]:
+        - generic [ref=e246]:
+          - article [ref=e248]:
+            - generic "I/001" [ref=e249]
+            - figure [ref=e250]
+            - heading "Startups" [level=3] [ref=e251]
+            - generic [ref=e252]:
+              - paragraph [ref=e253]: Empowering startups with agile development and cost-effective solutions, we excel in product thinking, rapid prototyping, MVP development, and comprehensive mobile and SaaS solutions.
+              - link "Build with us" [ref=e254] [cursor=pointer]:
+                - /url: /contact
+                - generic [ref=e255]:
+                  - emphasis [aria-hidden]: Build with us
+                  - emphasis [ref=e256]: Build with us
+          - article [ref=e261]:
+            - generic "I/002" [ref=e262]
+            - figure [ref=e263]
+            - heading "Enterprises" [level=3] [ref=e264]
+            - generic [ref=e265]:
+              - paragraph [ref=e266]: Our Enterprise Services streamline operations by building new products, deploying ERPs, and enabling access to new technologies. With diligent monitoring and support we safeguard your business around the clock.
+              - link "Shape what's next" [ref=e267] [cursor=pointer]:
+                - /url: /contact
+                - generic [ref=e268]:
+                  - emphasis [aria-hidden]: Shape what's next
+                  - emphasis [ref=e269]: Shape what's next
+          - article [ref=e274]:
+            - generic "I/003" [ref=e275]
+            - figure [ref=e276]
+            - heading "Web 3 Companies" [level=3] [ref=e277]
+            - generic [ref=e278]:
+              - paragraph [ref=e279]: From establishing Layer 1 and Layer 2 protocols to crafting intricate smart contracts and creating engaging frontend, we spearhead projects forward, whether it's a meme coin or a complex zk-proof system.
+              - link "Take Your Product Further" [ref=e280] [cursor=pointer]:
+                - /url: /contact
+                - generic [ref=e281]:
+                  - emphasis [aria-hidden]: Take Your Product Further
+                  - emphasis [ref=e282]: Take Your Product Further
+        - generic [aria-hidden]:
+          - generic: Drag
+    - generic [ref=e288]:
+      - generic:
+        - generic: /
+        - generic "Selected Work"
+        - generic "/006"
+      - heading "Six problems. Six systems that hold." [level=2]: Six problems.Six systems that hold.
+      - paragraph: Drag the stack, or keep scrolling — every project comes round.
+    - generic [ref=e290]:
+      - generic [ref=e291]:
+        - tablist "What defines" [ref=e293]:
+          - tab "Expertise" [selected] [ref=e294] [cursor=pointer]:
+            - generic [ref=e295]:
+              - emphasis [aria-hidden]: Expertise
+              - emphasis [ref=e296]: Expertise
+          - tab "Values" [ref=e297] [cursor=pointer]:
+            - generic [ref=e298]:
+              - emphasis [aria-hidden]: Values
+              - emphasis [ref=e299]: Values
+          - tab "Methodology" [ref=e300] [cursor=pointer]:
+            - generic [ref=e301]:
+              - emphasis [aria-hidden]: Methodology
+              - emphasis [ref=e302]: Methodology
+        - tabpanel "Expertise" [ref=e304]:
+          - generic [aria-hidden] [ref=e305]: /
+          - heading "Expertise" [level=2] [ref=e306]
+          - list [ref=e307]:
+            - listitem [ref=e308]:
+              - generic [ref=e309]: "01"
+              - heading "Edgetech" [level=3] [ref=e310]
+              - paragraph [ref=e312]: The latest in technology trends, from blockchain to artificial intelligence.
+            - listitem [ref=e313]:
+              - generic [ref=e314]: "02"
+              - heading "In-House" [level=3] [ref=e315]
+              - paragraph [ref=e317]: Professional local talent in your timezone, no outsourcing involved. Direct communication and collaboration.
+            - listitem [ref=e318]:
+              - generic [ref=e319]: "03"
+              - heading "Experienced" [level=3] [ref=e320]
+              - paragraph [ref=e322]: Hackers to straight-A students, over 90% of our developers are senior engineers with various areas of expertise.
+          - emphasis [ref=e324]: "1"
+      - figure "Eugen Baicea SR. Producer Amber Studio" [ref=e328]:
+        - blockquote [ref=e329]:
+          - text: “
+          - generic [ref=e330]: I
+          - generic [ref=e331]: was
+          - generic [ref=e332]: truly
+          - generic [ref=e333]: impressed
+          - generic [ref=e334]: by
+          - generic [ref=e335]: their
+          - generic [ref=e336]: level
+          - generic [ref=e337]: of
+          - generic [ref=e338]: flexibility,
+          - generic [ref=e339]: professionalism,
+          - generic [ref=e340]: and
+          - generic [ref=e341]: dedication
+          - generic [ref=e342]: when
+          - generic [ref=e343]: it
+          - generic [ref=e344]: came
+          - generic [ref=e345]: to
+          - generic [ref=e346]: tackling
+          - generic [ref=e347]: the
+          - generic [ref=e348]: workload.
+          - generic [ref=e349]: Their
+          - generic [ref=e350]: commitment
+          - generic [ref=e351]: to
+          - generic [ref=e352]: the
+          - generic [ref=e353]: task
+          - generic [ref=e354]: at
+          - generic [ref=e355]: hand,
+          - generic [ref=e356]: coupled
+          - generic [ref=e357]: with
+          - generic [ref=e358]: their
+          - generic [ref=e359]: serious
+          - generic [ref=e360]: approach,
+          - generic [ref=e361]: truly
+          - generic [ref=e362]: stood
+          - generic [ref=e363]: out
+          - generic [ref=e364]: to
+          - generic [ref=e365]: me.
+        - generic [ref=e366]:
+          - generic [ref=e367]: Eugen Baicea
+          - generic [ref=e368]: SR. Producer
+          - generic [ref=e369]: Amber Studio
+    - generic [ref=e371]:
+      - heading "We Drive Your Systems Fwrd" [level=2] [ref=e372]:
+        - generic [ref=e376]:
+          - generic [ref=e377]: We
+          - generic [ref=e378]: Drive
+        - generic [ref=e380]: Your
+        - generic [ref=e387]: Systems
+        - generic [ref=e390]: Fwrd
+      - generic [ref=e393]:
+        - paragraph [ref=e394]: Digital architectures for an ever-shifting world.
+        - link "Let's talk" [ref=e395] [cursor=pointer]:
+          - /url: /contact
+          - generic [ref=e396]:
+            - emphasis [aria-hidden]: Let's talk
+            - emphasis [ref=e397]: Let's talk
+  - contentinfo [ref=e404]:
+    - generic [ref=e405]:
+      - generic [ref=e406]:
+        - link "AXIMEST®" [ref=e407] [cursor=pointer]:
+          - /url: /
+        - link [ref=e412] [cursor=pointer]:
+          - /url: /fr
+          - generic "Français" [ref=e413]:
+            - generic [aria-hidden] [ref=e414]:
+              - generic [ref=e415]: F
+              - generic [ref=e416]: r
+              - generic [ref=e417]: a
+              - generic [ref=e418]: "n"
+              - generic [ref=e419]: ç
+              - generic [ref=e420]: a
+              - generic [ref=e421]: i
+              - generic [ref=e422]: s
+            - generic [aria-hidden] [ref=e423]:
+              - generic [ref=e424]: F
+              - generic [ref=e425]: r
+              - generic [ref=e426]: a
+              - generic [ref=e427]: "n"
+              - generic [ref=e428]: ç
+              - generic [ref=e429]: a
+              - generic [ref=e430]: i
+              - generic [ref=e431]: s
+        - generic [ref=e432]:
+          - generic [ref=e433]:
+            - emphasis [ref=e434]: Est
+            - strong [ref=e435]: "2016"
+          - generic [ref=e436]:
+            - strong [ref=e437]: SOC2
+            - emphasis [ref=e438]: Type II
+          - generic [ref=e439]:
+            - strong [ref=e440]: HIPAA
+            - emphasis [ref=e441]: Compliant
+          - generic [ref=e442]:
+            - emphasis [ref=e443]: aws
+            - strong [ref=e444]: Partner
+        - generic [ref=e445]:
+          - strong [ref=e446]: Clutch
+          - generic [ref=e447]: 4.9/5
+          - generic [ref=e448]: ★★★★★
+      - generic [ref=e449]:
+        - heading "Services" [level=3] [ref=e450]
+        - list [ref=e451]:
+          - listitem [ref=e452]:
+            - link [ref=e453] [cursor=pointer]:
+              - /url: /services/advisory
+              - generic "Advisory" [ref=e454]:
+                - generic [aria-hidden] [ref=e455]:
+                  - generic [ref=e456]: A
+                  - generic [ref=e457]: d
+                  - generic [ref=e458]: v
+                  - generic [ref=e459]: i
+                  - generic [ref=e460]: s
+                  - generic [ref=e461]: o
+                  - generic [ref=e462]: r
+                  - generic [ref=e463]: "y"
+                - generic [aria-hidden] [ref=e464]:
+                  - generic [ref=e465]: A
+                  - generic [ref=e466]: d
+                  - generic [ref=e467]: v
+                  - generic [ref=e468]: i
+                  - generic [ref=e469]: s
+                  - generic [ref=e470]: o
+                  - generic [ref=e471]: r
+                  - generic [ref=e472]: "y"
+          - listitem [ref=e473]:
+            - link [ref=e474] [cursor=pointer]:
+              - /url: /services/blockchain
+              - generic "Blockchain" [ref=e475]:
+                - generic [aria-hidden] [ref=e476]:
+                  - generic [ref=e477]: B
+                  - generic [ref=e478]: l
+                  - generic [ref=e479]: o
+                  - generic [ref=e480]: c
+                  - generic [ref=e481]: k
+                  - generic [ref=e482]: c
+                  - generic [ref=e483]: h
+                  - generic [ref=e484]: a
+                  - generic [ref=e485]: i
+                  - generic [ref=e486]: "n"
+                - generic [aria-hidden] [ref=e487]:
+                  - generic [ref=e488]: B
+                  - generic [ref=e489]: l
+                  - generic [ref=e490]: o
+                  - generic [ref=e491]: c
+                  - generic [ref=e492]: k
+                  - generic [ref=e493]: c
+                  - generic [ref=e494]: h
+                  - generic [ref=e495]: a
+                  - generic [ref=e496]: i
+                  - generic [ref=e497]: "n"
+          - listitem [ref=e498]:
+            - link [ref=e499] [cursor=pointer]:
+              - /url: /services/product-development
+              - generic "Product Development" [ref=e500]:
+                - generic [aria-hidden] [ref=e501]:
+                  - generic [ref=e502]: P
+                  - generic [ref=e503]: r
+                  - generic [ref=e504]: o
+                  - generic [ref=e505]: d
+                  - generic [ref=e506]: u
+                  - generic [ref=e507]: c
+                  - generic [ref=e508]: t
+                  - generic [ref=e510]: D
+                  - generic [ref=e511]: e
+                  - generic [ref=e512]: v
+                  - generic [ref=e513]: e
+                  - generic [ref=e514]: l
+                  - generic [ref=e515]: o
+                  - generic [ref=e516]: p
+                  - generic [ref=e517]: m
+                  - generic [ref=e518]: e
+                  - generic [ref=e519]: "n"
+                  - generic [ref=e520]: t
+                - generic [aria-hidden] [ref=e521]:
+                  - generic [ref=e522]: P
+                  - generic [ref=e523]: r
+                  - generic [ref=e524]: o
+                  - generic [ref=e525]: d
+                  - generic [ref=e526]: u
+                  - generic [ref=e527]: c
+                  - generic [ref=e528]: t
+                  - generic [ref=e530]: D
+                  - generic [ref=e531]: e
+                  - generic [ref=e532]: v
+                  - generic [ref=e533]: e
+                  - generic [ref=e534]: l
+                  - generic [ref=e535]: o
+                  - generic [ref=e536]: p
+                  - generic [ref=e537]: m
+                  - generic [ref=e538]: e
+                  - generic [ref=e539]: "n"
+                  - generic [ref=e540]: t
+          - listitem [ref=e541]:
+            - link [ref=e542] [cursor=pointer]:
+              - /url: /services/enterprise-software
+              - generic "Enterprise Software" [ref=e543]:
+                - generic [aria-hidden] [ref=e544]:
+                  - generic [ref=e545]: E
+                  - generic [ref=e546]: "n"
+                  - generic [ref=e547]: t
+                  - generic [ref=e548]: e
+                  - generic [ref=e549]: r
+                  - generic [ref=e550]: p
+                  - generic [ref=e551]: r
+                  - generic [ref=e552]: i
+                  - generic [ref=e553]: s
+                  - generic [ref=e554]: e
+                  - generic [ref=e556]: S
+                  - generic [ref=e557]: o
+                  - generic [ref=e558]: f
+                  - generic [ref=e559]: t
+                  - generic [ref=e560]: w
+                  - generic [ref=e561]: a
+                  - generic [ref=e562]: r
+                  - generic [ref=e563]: e
+                - generic [aria-hidden] [ref=e564]:
+                  - generic [ref=e565]: E
+                  - generic [ref=e566]: "n"
+                  - generic [ref=e567]: t
+                  - generic [ref=e568]: e
+                  - generic [ref=e569]: r
+                  - generic [ref=e570]: p
+                  - generic [ref=e571]: r
+                  - generic [ref=e572]: i
+                  - generic [ref=e573]: s
+                  - generic [ref=e574]: e
+                  - generic [ref=e576]: S
+                  - generic [ref=e577]: o
+                  - generic [ref=e578]: f
+                  - generic [ref=e579]: t
+                  - generic [ref=e580]: w
+                  - generic [ref=e581]: a
+                  - generic [ref=e582]: r
+                  - generic [ref=e583]: e
+          - listitem [ref=e584]:
+            - link [ref=e585] [cursor=pointer]:
+              - /url: /services/artificial-intelligence
+              - generic "Artificial Intelligence (AI)" [ref=e586]:
+                - generic [aria-hidden] [ref=e587]:
+                  - generic [ref=e588]: A
+                  - generic [ref=e589]: r
+                  - generic [ref=e590]: t
+                  - generic [ref=e591]: i
+                  - generic [ref=e592]: f
+                  - generic [ref=e593]: i
+                  - generic [ref=e594]: c
+                  - generic [ref=e595]: i
+                  - generic [ref=e596]: a
+                  - generic [ref=e597]: l
+                  - generic [ref=e599]: I
+                  - generic [ref=e600]: "n"
+                  - generic [ref=e601]: t
+                  - generic [ref=e602]: e
+                  - generic [ref=e603]: l
+                  - generic [ref=e604]: l
+                  - generic [ref=e605]: i
+                  - generic [ref=e606]: g
+                  - generic [ref=e607]: e
+                  - generic [ref=e608]: "n"
+                  - generic [ref=e609]: c
+                  - generic [ref=e610]: e
+                  - generic [ref=e612]: (
+                  - generic [ref=e613]: A
+                  - generic [ref=e614]: I
+                  - generic [ref=e615]: )
+                - generic [aria-hidden] [ref=e616]:
+                  - generic [ref=e617]: A
+                  - generic [ref=e618]: r
+                  - generic [ref=e619]: t
+                  - generic [ref=e620]: i
+                  - generic [ref=e621]: f
+                  - generic [ref=e622]: i
+                  - generic [ref=e623]: c
+                  - generic [ref=e624]: i
+                  - generic [ref=e625]: a
+                  - generic [ref=e626]: l
+                  - generic [ref=e628]: I
+                  - generic [ref=e629]: "n"
+                  - generic [ref=e630]: t
+                  - generic [ref=e631]: e
+                  - generic [ref=e632]: l
+                  - generic [ref=e633]: l
+                  - generic [ref=e634]: i
+                  - generic [ref=e635]: g
+                  - generic [ref=e636]: e
+                  - generic [ref=e637]: "n"
+                  - generic [ref=e638]: c
+                  - generic [ref=e639]: e
+                  - generic [ref=e641]: (
+                  - generic [ref=e642]: A
+                  - generic [ref=e643]: I
+                  - generic [ref=e644]: )
+      - list [ref=e646]:
+        - listitem [ref=e647]:
+          - link [ref=e648] [cursor=pointer]:
+            - /url: /projects
+            - generic "Projects" [ref=e649]:
+              - generic [aria-hidden] [ref=e650]:
+                - generic [ref=e651]: P
+                - generic [ref=e652]: r
+                - generic [ref=e653]: o
+                - generic [ref=e654]: j
+                - generic [ref=e655]: e
+                - generic [ref=e656]: c
+                - generic [ref=e657]: t
+                - generic [ref=e658]: s
+              - generic [aria-hidden] [ref=e659]:
+                - generic [ref=e660]: P
+                - generic [ref=e661]: r
+                - generic [ref=e662]: o
+                - generic [ref=e663]: j
+                - generic [ref=e664]: e
+                - generic [ref=e665]: c
+                - generic [ref=e666]: t
+                - generic [ref=e667]: s
+        - listitem [ref=e668]:
+          - link [ref=e669] [cursor=pointer]:
+            - /url: /#expertise
+            - generic "Expertise" [ref=e670]:
+              - generic [aria-hidden] [ref=e671]:
+                - generic [ref=e672]: E
+                - generic [ref=e673]: x
+                - generic [ref=e674]: p
+                - generic [ref=e675]: e
+                - generic [ref=e676]: r
+                - generic [ref=e677]: t
+                - generic [ref=e678]: i
+                - generic [ref=e679]: s
+                - generic [ref=e680]: e
+              - generic [aria-hidden] [ref=e681]:
+                - generic [ref=e682]: E
+                - generic [ref=e683]: x
+                - generic [ref=e684]: p
+                - generic [ref=e685]: e
+                - generic [ref=e686]: r
+                - generic [ref=e687]: t
+                - generic [ref=e688]: i
+                - generic [ref=e689]: s
+                - generic [ref=e690]: e
+        - listitem [ref=e691]:
+          - link [ref=e692] [cursor=pointer]:
+            - /url: https://example.com
+            - generic "Axkit" [ref=e693]:
+              - generic [aria-hidden] [ref=e694]:
+                - generic [ref=e695]: A
+                - generic [ref=e696]: x
+                - generic [ref=e697]: k
+                - generic [ref=e698]: i
+                - generic [ref=e699]: t
+              - generic [aria-hidden] [ref=e700]:
+                - generic [ref=e701]: A
+                - generic [ref=e702]: x
+                - generic [ref=e703]: k
+                - generic [ref=e704]: i
+                - generic [ref=e705]: t
+      - generic [ref=e709]:
+        - heading "Content" [level=3] [ref=e710]
+        - list [ref=e711]:
+          - listitem [ref=e712]:
+            - link [ref=e713] [cursor=pointer]:
+              - /url: /articles
+              - generic "Articles" [ref=e714]:
+                - generic [aria-hidden] [ref=e715]:
+                  - generic [ref=e716]: A
+                  - generic [ref=e717]: r
+                  - generic [ref=e718]: t
+                  - generic [ref=e719]: i
+                  - generic [ref=e720]: c
+                  - generic [ref=e721]: l
+                  - generic [ref=e722]: e
+                  - generic [ref=e723]: s
+                - generic [aria-hidden] [ref=e724]:
+                  - generic [ref=e725]: A
+                  - generic [ref=e726]: r
+                  - generic [ref=e727]: t
+                  - generic [ref=e728]: i
+                  - generic [ref=e729]: c
+                  - generic [ref=e730]: l
+                  - generic [ref=e731]: e
+                  - generic [ref=e732]: s
+          - listitem [ref=e733]:
+            - link [ref=e734] [cursor=pointer]:
+              - /url: /podcasts
+              - generic "Podcasts" [ref=e735]:
+                - generic [aria-hidden] [ref=e736]:
+                  - generic [ref=e737]: P
+                  - generic [ref=e738]: o
+                  - generic [ref=e739]: d
+                  - generic [ref=e740]: c
+                  - generic [ref=e741]: a
+                  - generic [ref=e742]: s
+                  - generic [ref=e743]: t
+                  - generic [ref=e744]: s
+                - generic [aria-hidden] [ref=e745]:
+                  - generic [ref=e746]: P
+                  - generic [ref=e747]: o
+                  - generic [ref=e748]: d
+                  - generic [ref=e749]: c
+                  - generic [ref=e750]: a
+                  - generic [ref=e751]: s
+                  - generic [ref=e752]: t
+                  - generic [ref=e753]: s
+      - generic [ref=e754]:
+        - heading "Social Media" [level=3] [ref=e755]
+        - list [ref=e756]:
+          - listitem [ref=e757]:
+            - link [ref=e758] [cursor=pointer]:
+              - /url: https://www.linkedin.com
+              - generic "LinkedIn" [ref=e759]:
+                - generic [aria-hidden] [ref=e760]:
+                  - generic [ref=e761]: L
+                  - generic [ref=e762]: i
+                  - generic [ref=e763]: "n"
+                  - generic [ref=e764]: k
+                  - generic [ref=e765]: e
+                  - generic [ref=e766]: d
+                  - generic [ref=e767]: I
+                  - generic [ref=e768]: "n"
+                - generic [aria-hidden] [ref=e769]:
+                  - generic [ref=e770]: L
+                  - generic [ref=e771]: i
+                  - generic [ref=e772]: "n"
+                  - generic [ref=e773]: k
+                  - generic [ref=e774]: e
+                  - generic [ref=e775]: d
+                  - generic [ref=e776]: I
+                  - generic [ref=e777]: "n"
+          - listitem [ref=e778]:
+            - link [ref=e779] [cursor=pointer]:
+              - /url: https://www.facebook.com
+              - generic "Facebook" [ref=e780]:
+                - generic [aria-hidden] [ref=e781]:
+                  - generic [ref=e782]: F
+                  - generic [ref=e783]: a
+                  - generic [ref=e784]: c
+                  - generic [ref=e785]: e
+                  - generic [ref=e786]: b
+                  - generic [ref=e787]: o
+                  - generic [ref=e788]: o
+                  - generic [ref=e789]: k
+                - generic [aria-hidden] [ref=e790]:
+                  - generic [ref=e791]: F
+                  - generic [ref=e792]: a
+                  - generic [ref=e793]: c
+                  - generic [ref=e794]: e
+                  - generic [ref=e795]: b
+                  - generic [ref=e796]: o
+                  - generic [ref=e797]: o
+                  - generic [ref=e798]: k
+          - listitem [ref=e799]:
+            - link [ref=e800] [cursor=pointer]:
+              - /url: https://x.com
+              - generic "X (Twitter)" [ref=e801]:
+                - generic [aria-hidden] [ref=e802]:
+                  - generic [ref=e803]: X
+                  - generic [ref=e805]: (
+                  - generic [ref=e806]: T
+                  - generic [ref=e807]: w
+                  - generic [ref=e808]: i
+                  - generic [ref=e809]: t
+                  - generic [ref=e810]: t
+                  - generic [ref=e811]: e
+                  - generic [ref=e812]: r
+                  - generic [ref=e813]: )
+                - generic [aria-hidden] [ref=e814]:
+                  - generic [ref=e815]: X
+                  - generic [ref=e817]: (
+                  - generic [ref=e818]: T
+                  - generic [ref=e819]: w
+                  - generic [ref=e820]: i
+                  - generic [ref=e821]: t
+                  - generic [ref=e822]: t
+                  - generic [ref=e823]: e
+                  - generic [ref=e824]: r
+                  - generic [ref=e825]: )
+          - listitem [ref=e826]:
+            - link [ref=e827] [cursor=pointer]:
+              - /url: https://www.instagram.com
+              - generic "Instagram" [ref=e828]:
+                - generic [aria-hidden] [ref=e829]:
+                  - generic [ref=e830]: I
+                  - generic [ref=e831]: "n"
+                  - generic [ref=e832]: s
+                  - generic [ref=e833]: t
+                  - generic [ref=e834]: a
+                  - generic [ref=e835]: g
+                  - generic [ref=e836]: r
+                  - generic [ref=e837]: a
+                  - generic [ref=e838]: m
+                - generic [aria-hidden] [ref=e839]:
+                  - generic [ref=e840]: I
+                  - generic [ref=e841]: "n"
+                  - generic [ref=e842]: s
+                  - generic [ref=e843]: t
+                  - generic [ref=e844]: a
+                  - generic [ref=e845]: g
+                  - generic [ref=e846]: r
+                  - generic [ref=e847]: a
+                  - generic [ref=e848]: m
+    - generic [ref=e849]:
+      - heading "Offices" [level=3] [ref=e850]
+      - heading "Dhaka" [level=3] [ref=e851]
+      - heading "Chittagong" [level=3] [ref=e852]
+      - generic [ref=e855]:
+        - generic [ref=e856]: House -31/A (Lift-1)
+        - generic [ref=e857]: Road-21, Nikunjo-2
+        - generic [ref=e858]: Khilkhet
+        - generic [ref=e859]: Dhaka-1229
+        - link [ref=e860] [cursor=pointer]:
+          - /url: tel:+8801619547969
+          - generic "01619547969" [ref=e861]:
+            - generic [aria-hidden] [ref=e862]:
+              - generic [ref=e863]: "0"
+              - generic [ref=e864]: "1"
+              - generic [ref=e865]: "6"
+              - generic [ref=e866]: "1"
+              - generic [ref=e867]: "9"
+              - generic [ref=e868]: "5"
+              - generic [ref=e869]: "4"
+              - generic [ref=e870]: "7"
+              - generic [ref=e871]: "9"
+              - generic [ref=e872]: "6"
+              - generic [ref=e873]: "9"
+            - generic [aria-hidden] [ref=e874]:
+              - generic [ref=e875]: "0"
+              - generic [ref=e876]: "1"
+              - generic [ref=e877]: "6"
+              - generic [ref=e878]: "1"
+              - generic [ref=e879]: "9"
+              - generic [ref=e880]: "5"
+              - generic [ref=e881]: "4"
+              - generic [ref=e882]: "7"
+              - generic [ref=e883]: "9"
+              - generic [ref=e884]: "6"
+              - generic [ref=e885]: "9"
+      - generic [ref=e886]:
+        - generic [ref=e887]: Eaukut Villa
+        - generic [ref=e888]: Road No. 6, House No. 6
+        - generic [ref=e889]: Nasirabad Housing Society
+        - generic [ref=e890]: Chittagong
+        - link [ref=e891] [cursor=pointer]:
+          - /url: tel:+8801716222093
+          - generic "01716222093" [ref=e892]:
+            - generic [aria-hidden] [ref=e893]:
+              - generic [ref=e894]: "0"
+              - generic [ref=e895]: "1"
+              - generic [ref=e896]: "7"
+              - generic [ref=e897]: "1"
+              - generic [ref=e898]: "6"
+              - generic [ref=e899]: "2"
+              - generic [ref=e900]: "2"
+              - generic [ref=e901]: "2"
+              - generic [ref=e902]: "0"
+              - generic [ref=e903]: "9"
+              - generic [ref=e904]: "3"
+            - generic [aria-hidden] [ref=e905]:
+              - generic [ref=e906]: "0"
+              - generic [ref=e907]: "1"
+              - generic [ref=e908]: "7"
+              - generic [ref=e909]: "1"
+              - generic [ref=e910]: "6"
+              - generic [ref=e911]: "2"
+              - generic [ref=e912]: "2"
+              - generic [ref=e913]: "2"
+              - generic [ref=e914]: "0"
+              - generic [ref=e915]: "9"
+              - generic [ref=e916]: "3"
+    - generic [ref=e917]:
+      - generic [ref=e918]: © 2026 Aximest
+      - generic [ref=e919]:
+        - link [ref=e920] [cursor=pointer]:
+          - /url: /terms
+          - generic "Terms & Conditions" [ref=e921]:
+            - generic [aria-hidden] [ref=e922]:
+              - generic [ref=e923]: T
+              - generic [ref=e924]: e
+              - generic [ref=e925]: r
+              - generic [ref=e926]: m
+              - generic [ref=e927]: s
+              - generic [ref=e929]: "&"
+              - generic [ref=e931]: C
+              - generic [ref=e932]: o
+              - generic [ref=e933]: "n"
+              - generic [ref=e934]: d
+              - generic [ref=e935]: i
+              - generic [ref=e936]: t
+              - generic [ref=e937]: i
+              - generic [ref=e938]: o
+              - generic [ref=e939]: "n"
+              - generic [ref=e940]: s
+            - generic [aria-hidden] [ref=e941]:
+              - generic [ref=e942]: T
+              - generic [ref=e943]: e
+              - generic [ref=e944]: r
+              - generic [ref=e945]: m
+              - generic [ref=e946]: s
+              - generic [ref=e948]: "&"
+              - generic [ref=e950]: C
+              - generic [ref=e951]: o
+              - generic [ref=e952]: "n"
+              - generic [ref=e953]: d
+              - generic [ref=e954]: i
+              - generic [ref=e955]: t
+              - generic [ref=e956]: i
+              - generic [ref=e957]: o
+              - generic [ref=e958]: "n"
+              - generic [ref=e959]: s
+        - link [ref=e960] [cursor=pointer]:
+          - /url: /privacy
+          - generic "Privacy Policy" [ref=e961]:
+            - generic [aria-hidden] [ref=e962]:
+              - generic [ref=e963]: P
+              - generic [ref=e964]: r
+              - generic [ref=e965]: i
+              - generic [ref=e966]: v
+              - generic [ref=e967]: a
+              - generic [ref=e968]: c
+              - generic [ref=e969]: "y"
+              - generic [ref=e971]: P
+              - generic [ref=e972]: o
+              - generic [ref=e973]: l
+              - generic [ref=e974]: i
+              - generic [ref=e975]: c
+              - generic [ref=e976]: "y"
+            - generic [aria-hidden] [ref=e977]:
+              - generic [ref=e978]: P
+              - generic [ref=e979]: r
+              - generic [ref=e980]: i
+              - generic [ref=e981]: v
+              - generic [ref=e982]: a
+              - generic [ref=e983]: c
+              - generic [ref=e984]: "y"
+              - generic [ref=e986]: P
+              - generic [ref=e987]: o
+              - generic [ref=e988]: l
+              - generic [ref=e989]: i
+              - generic [ref=e990]: c
+              - generic [ref=e991]: "y"
+      - generic [ref=e992]: /0026 Engineering_
+  - button "Open Next.js Dev Tools" [ref=e998] [cursor=pointer]
