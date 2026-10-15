@@ -35,7 +35,7 @@ export default function ServiceView({ service }: { service: Service }) {
           <figure className={styles.heroMedia}>
             <Media src={`/images/services/${service.id}.jpg`} seed={3} dark priority />
             <figcaption className={styles.heroCounter}>
-              <ScrambleText delay={0.2}>{`${service.count} Services`}</ScrambleText>
+              <ScrambleText delay={0.2}>{`${detail.items.length} Services`}</ScrambleText>
             </figcaption>
           </figure>
 
@@ -46,7 +46,7 @@ export default function ServiceView({ service }: { service: Service }) {
 
         <div className={styles.heroFoot}>
           <ScrambleText delay={0.3}>{service.title}</ScrambleText>
-          <ScrambleText delay={0.4}>{`${service.count} Services`}</ScrambleText>
+          <ScrambleText delay={0.4}>{`${detail.items.length} Services`}</ScrambleText>
           <span className={styles.heroSlash}>/</span>
           <a href="#detail" className={styles.heroExplore}>
             Explore

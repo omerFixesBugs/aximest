@@ -44,7 +44,7 @@ export default function SubServiceView({
           <h1 className={styles.statement}>{item.body}</h1>
 
           <p className={styles.intro}>
-            Part of our {service.title.toLowerCase()} practice — {service.count}{" "}
+            Part of our {service.title.toLowerCase()} practice — {detail.items.length}{" "}
             services in all, delivered by the same senior engineers who scope
             them.
           </p>

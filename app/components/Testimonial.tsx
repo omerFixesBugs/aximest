@@ -6,6 +6,9 @@ import { useParallax } from "../hooks/useInView";
 import { testimonial } from "../lib/site";
 import styles from "./Testimonial.module.css";
 
+/** Unlit words stay readable over the photo, like the reference's grey. */
+const DIM = 0.55;
+
 /**
  * Full-bleed quote over a darkened photo. Words brighten one by one as the
  * section scrolls through the viewport.
@@ -18,7 +21,9 @@ export default function Testimonial() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const spans = Array.from(el.querySelectorAll<HTMLElement>("[data-word]"));
+    const quote = el.querySelector("blockquote");
+    if (!quote) return;
+    const spans = Array.from(quote.querySelectorAll<HTMLElement>("[data-word]"));
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       spans.forEach((s) => (s.style.opacity = "1"));
@@ -27,16 +32,19 @@ export default function Testimonial() {
 
     let frame = 0;
     const update = () => {
-      const rect = el.getBoundingClientRect();
+      // Driven by the quote itself, not the section: nothing lights until
+      // the whole quote is on screen, and the last word lands while its top
+      // is still well inside the viewport — so the sweep is always seen.
+      const rect = quote.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const progress = Math.max(
-        0,
-        Math.min(1, (vh * 0.9 - rect.top) / (rect.height * 0.75 + vh * 0.2)),
-      );
-      const reach = progress * (spans.length + 8);
+      const start = vh - rect.height;
+      // a quote taller than the screen (phones) still gets a scroll's worth of sweep
+      const end = Math.min(vh * 0.1, start - vh * 0.25);
+      const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+      const reach = progress * spans.length;
       spans.forEach((span, i) => {
         const local = Math.max(0, Math.min(1, reach - i));
-        span.style.opacity = String(0.32 + local * 0.68);
+        span.style.opacity = String(DIM + local * (1 - DIM));
       });
     };
 
@@ -69,7 +77,7 @@ export default function Testimonial() {
             “
           </span>
           {words.map((word, i) => (
-            <span key={i} data-word style={{ opacity: 0.32 }}>
+            <span key={i} data-word style={{ opacity: DIM }}>
               {word}{" "}
             </span>
           ))}

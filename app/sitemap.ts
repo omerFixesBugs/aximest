@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/contact", 0.9),
     page("/projects", 0.8),
     page("/expertise", 0.7),
+    page("/about", 0.7),
     page("/articles", 0.6),
     page("/podcasts", 0.5),
     ...services.flatMap((s) => [

@@ -1,0 +1,134 @@
+.section {
+  background: var(--white);
+  border-top: var(--border);
+  padding-bottom: var(--clamp-from-80-52);
+}
+
+/* SectionHead sets its aside in mono caps; this one reads as body copy. */
+.aside {
+  font-family: var(--font-text);
+  font-size: var(--clamp-16);
+  line-height: 1.1;
+  text-transform: none;
+}
+
+/* Cards sit under the title: columns 4–12, three to a row. */
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gutter);
+  padding: 0 var(--grid-margin) 0 calc(var(--grid-margin) + var(--grid-step) * 3);
+}
+
+/* Full-bleed variant: four to a row across the whole page, taller cards. */
+.list[data-wide] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0 var(--grid-margin);
+}
+
+.list[data-wide] .card { min-height: max(440px, 35.8vw); }
+
+.item {
+  opacity: 0;
+  transform: translateY(3em);
+  transition:
+    opacity 0.3s linear var(--stagger, 0s),
+    transform 0.6s var(--ease-power2-out) var(--stagger, 0s);
+}
+
+.list:global(.is-inview) .item { opacity: 1; transform: none; }
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 440px;
+  background: var(--card-bg-color);
+  border-radius: 4px;
+  transition:
+    background-color 0.3s var(--ease-power2-out),
+    color 0.3s var(--ease-power2-out);
+}
+
+.card:hover { background-color: var(--red-500); color: var(--black); }
+
+/* Whole card is the hit area. */
+.link { position: absolute; inset: 0; z-index: 1; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: var(--clamp-12);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.indicator {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--grey-300);
+  transition: background-color 0.6s var(--ease-power2-out);
+}
+
+.card:hover .indicator { background-color: var(--black); }
+
+.content {
+  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 40px 16px;
+  padding: 40px 12px 30px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: max(26px, 2.2222vw);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 11ch;
+}
+
+.body { font-size: var(--clamp-16); line-height: 1.1; }
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+  padding: 0 12px;
+  border-top: 1px dashed var(--grey-600);
+  transition: border-color 0.3s var(--ease-power2-out);
+}
+
+.card:hover .footer { border-top-color: var(--black); }
+
+.footer svg { width: 8px; height: 8px; }
+
+@media (max-width: 1023px) {
+  .list,
+  .list[data-wide] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 var(--grid-margin);
+  }
+}
+
+@media (max-width: 599px) {
+  .list,
+  .list[data-wide] { grid-template-columns: 1fr; }
+  .card,
+  .list[data-wide] .card { min-height: 320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item { opacity: 1; transform: none; transition: none; }
+}

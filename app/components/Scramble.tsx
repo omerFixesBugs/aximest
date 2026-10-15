@@ -17,6 +17,10 @@ const ROLL = 45;
 /** How many scrambling characters trail the settled prefix. */
 const TAIL = 3;
 
+/** Holds the line while nothing is shown — an empty label collapses and
+ *  everything below it jumps up a line, then back. */
+const EMPTY = "\u200b";
+
 type Options = { delay?: number; onDone?: () => void };
 
 /**
@@ -60,11 +64,11 @@ export function scramble(el: HTMLElement, text: string, options: Options = {}) {
       cache = out;
     }
 
-    el.textContent = cache;
+    el.textContent = cache || EMPTY;
     raf = requestAnimationFrame(frame);
   };
 
-  el.textContent = "";
+  el.textContent = EMPTY;
   timer = window.setTimeout(() => {
     raf = requestAnimationFrame(frame);
   }, delay * 1000);
