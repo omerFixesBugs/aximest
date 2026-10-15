@@ -8,7 +8,8 @@
 .spinSlow,
 .spinFast,
 .corePulse,
-.pulseHole {
+.pulseHole,
+.fill {
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -85,9 +86,21 @@
   to { transform: scale(1.25); }
 }
 
+/* anchored left so each bar grows from the axis */
+.fill {
+  transform-origin: left center;
+  animation: fill 2.8s var(--ease-power2-out) infinite alternate;
+  animation-delay: calc(var(--i) * -0.7s);
+}
+
+@keyframes fill {
+  from { transform: scaleX(0.25); }
+  to { transform: scaleX(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .driftA, .driftB, .march, .wave, .breathe,
-  .orbit, .spinSlow, .spinFast, .corePulse, .pulseHole {
+  .orbit, .spinSlow, .spinFast, .corePulse, .pulseHole, .fill {
     animation: none;
   }
 }

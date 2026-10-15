@@ -12,10 +12,14 @@
    AXIMEST — design tokens
    ============================================================ */
 :root {
-  /* Fonts */
+  /* Fonts — experiment. Default (Geist) kept below for one-step revert:
   --font-display: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   --font-text: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: var(--font-geist-mono), Monaco, Consolas, monospace;
+  */
+  --font-display: var(--font-display-face), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-text: var(--font-text-face), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-mono-face), Monaco, Consolas, monospace;
 
   /* Easing */
   --ease-power2-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);

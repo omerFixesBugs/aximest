@@ -13,12 +13,18 @@ export type AccordionRow = {
 };
 
 /** Numbered rows separated by dashed rules; each opens in place. */
-export default function Accordion({ rows }: { rows: AccordionRow[] }) {
+export default function Accordion({
+  rows,
+  compact,
+}: {
+  rows: AccordionRow[];
+  compact?: boolean;
+}) {
   const [open, setOpen] = useState<string | null>(null);
   const ref = useInView<HTMLOListElement>();
 
   return (
-    <ol className={styles.list} ref={ref}>
+    <ol className={styles.list} ref={ref} data-compact={compact || undefined}>
       {rows.map((row, i) => {
         const isOpen = open === row.n;
         return (

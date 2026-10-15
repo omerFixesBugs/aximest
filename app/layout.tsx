@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+// FONT EXPERIMENT — default was Geist. To revert: restore these two imports,
+// drop the Funnel/JetBrains block below, put the Geist variables back on <html>,
+// and swap the font tokens at the top of globals.css.
+// import { GeistSans } from "geist/font/sans";
+// import { GeistMono } from "geist/font/mono";
+import { Funnel_Display, Funnel_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 import Header from "./components/Header";
@@ -10,6 +14,10 @@ import SmoothScroll from "./components/SmoothScroll";
 import PageTransition from "./components/PageTransition";
 import Cursor from "./components/Cursor";
 import { site } from "./lib/site";
+
+const display = Funnel_Display({ subsets: ["latin"], variable: "--font-display-face" });
+const text = Funnel_Sans({ subsets: ["latin"], variable: "--font-text-face" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono-face" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -66,7 +74,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${display.variable} ${text.variable} ${mono.variable}`}>
       <body>
         <script
           type="application/ld+json"

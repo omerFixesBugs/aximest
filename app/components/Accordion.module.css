@@ -95,6 +95,18 @@
   letter-spacing: -0.032em;
 }
 
+/* FAQ-sized rows: mono index, smaller question. */
+.list[data-compact] .num {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--clamp-12);
+  letter-spacing: 0;
+}
+
+.list[data-compact] .name { font-size: max(20px, 1.67vw); letter-spacing: -0.02em; }
+
+.list[data-compact] .panelInner p { font-size: max(16px, 1.11vw); }
+
 .kind {
   font-size: var(--clamp-16);
   line-height: 1;

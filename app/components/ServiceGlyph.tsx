@@ -79,6 +79,25 @@ export default function ServiceGlyph({ id }: { id: string }) {
         </svg>
       );
 
+    case "data":
+      // horizontal bars filling like a live chart, out of phase
+      return (
+        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
+          {[0, 1, 2, 3].map((i) => (
+            <rect
+              key={i}
+              className={styles.fill}
+              style={{ ["--i" as string]: String(i) }}
+              x="24"
+              y={6 + i * 28}
+              width="192"
+              height="20"
+              fill="currentColor"
+            />
+          ))}
+        </svg>
+      );
+
     default:
       // concentric rings turning at different rates
       return (

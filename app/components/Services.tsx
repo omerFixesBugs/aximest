@@ -7,7 +7,7 @@ import ServiceGlyph from "./ServiceGlyph";
 import ScrambleText from "./Scramble";
 import { ArrowRight } from "./Icons";
 import { useRevealGroup } from "../hooks/useReveal";
-import { services } from "../lib/site";
+import { serviceDetail, services } from "../lib/site";
 import styles from "./Services.module.css";
 
 export default function Services() {
@@ -57,7 +57,7 @@ export default function Services() {
                     icon={<ArrowRight />}
                     className={styles.button}
                   >
-                    {`Explore ${service.count} Services`}
+                    {`Explore ${serviceDetail[service.id].items.length} Services`}
                   </Button>
                 </span>
               </div>
