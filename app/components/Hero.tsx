@@ -1,44 +1,29 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Button from "./Button";
 import ScrambleText from "./Scramble";
 import { site } from "../lib/site";
 import styles from "./Hero.module.css";
 
-/** What the hero app's automation feed cycles through. */
-const EVENTS = [
-  { tag: "Finance", text: "Invoice #2041 matched to bank payment" },
-  { tag: "Sales", text: "New lead scored 86, assigned to Rafi" },
-  { tag: "Stock", text: "SKU-118 running low, reorder drafted" },
-  { tag: "Support", text: "Ticket #932 answered by AI agent" },
-  { tag: "Reports", text: "Weekly sales report sent to 4 managers" },
-  { tag: "Delivery", text: "Order #5520 rescheduled, customer notified" },
-  { tag: "HR", text: "Leave request approved, payroll updated" },
+/** The scattered tools a business starts with. */
+const BEFORE = [
+  "Spreadsheets",
+  "WhatsApp orders",
+  "Email threads",
+  "Paper forms",
+  "Disconnected apps",
 ];
 
-const NAV = [
-  "Overview",
-  "Orders",
-  "Inventory",
-  "Customers",
-  "Automations",
-  "Reports",
+/** What the one system we build gives back. */
+const AFTER = [
+  "Web & mobile app",
+  "AI automations",
+  "Live reports",
+  "Connected tools",
 ];
 
-// twelve weeks of revenue, drawn as a rising line
-const SERIES = [32, 30, 38, 36, 44, 41, 52, 50, 58, 63, 61, 74];
-const CHART_W = 600;
-const CHART_H = 180;
-const points = SERIES.map((v, i) => [
-  (i / (SERIES.length - 1)) * CHART_W,
-  CHART_H - (v / 80) * CHART_H,
-]);
-const LINE = points
-  .map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`)
-  .join(" ");
-const AREA = `${LINE} L${CHART_W},${CHART_H} L0,${CHART_H} Z`;
-const [lastX, lastY] = points[points.length - 1];
+type Wire = { d: string; side: "in" | "out" };
 
 const noop = () => () => {};
 
@@ -50,48 +35,48 @@ function useReducedMotion() {
   );
 }
 
-/** Counts from 0 to `to` once `start` flips, easing out. */
-function Count({
-  to,
-  start,
-  prefix = "",
-  suffix = "",
-}: {
-  to: number;
-  start: boolean;
-  prefix?: string;
-  suffix?: string;
-}) {
-  const [n, setN] = useState(0);
-  const reduced = useReducedMotion();
-  useEffect(() => {
-    if (!start || reduced) return;
-    const t0 = performance.now();
-    let raf = 0;
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - t0) / 1600);
-      setN(Math.round(to * (1 - Math.pow(1 - p, 4))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [to, start, reduced]);
-  return (
-    <>
-      {prefix}
-      {(reduced ? to : n).toLocaleString("en-US")}
-      {suffix}
-    </>
-  );
+/**
+ * Curves from every chip to the core, measured from the laid-out DOM so they
+ * follow the grid whether it runs across (desktop) or down (phone).
+ */
+function measure(root: HTMLElement): Wire[] {
+  const box = root.getBoundingClientRect();
+  // a rect in the flow's own coordinates, with its centre
+  const local = (el: Element) => {
+    const r = el.getBoundingClientRect();
+    const x = r.left - box.left;
+    const y = r.top - box.top;
+    return { x, y, r: x + r.width, b: y + r.height, cx: x + r.width / 2, cy: y + r.height / 2 };
+  };
+  const core = local(root.querySelector("[data-core]")!);
+  const nodes = Array.from(root.querySelectorAll<HTMLElement>("[data-node]"));
+  const across = local(nodes[0]).r <= core.x;
+  const f = (v: number) => v.toFixed(1);
+
+  return nodes.map((el) => {
+    const n = local(el);
+    const side = el.dataset.node as Wire["side"];
+    if (across) {
+      const [x1, y1, x2, y2] =
+        side === "in" ? [n.r, n.cy, core.x, core.cy] : [core.r, core.cy, n.x, n.cy];
+      const m = f((x1 + x2) / 2);
+      return { side, d: `M${f(x1)},${f(y1)} C${m},${f(y1)} ${m},${f(y2)} ${f(x2)},${f(y2)}` };
+    }
+    // chips wrap into rows here, so wires leave from under (or above) the
+    // whole group rather than cutting through the row below
+    const group = local(el.parentElement!);
+    const [x1, y1, x2, y2] =
+      side === "in" ? [n.cx, group.b, core.cx, core.y] : [core.cx, core.b, n.cx, group.y];
+    const m = f((y1 + y2) / 2);
+    return { side, d: `M${f(x1)},${f(y1)} C${f(x1)},${m} ${f(x2)},${m} ${f(x2)},${f(y2)}` };
+  });
 }
 
 export default function Hero() {
   const [ready, setReady] = useState(false);
   const reduced = useReducedMotion();
-  // newest first; each entry keeps a unique key so the arrival animates
-  const [feed, setFeed] = useState(() =>
-    EVENTS.slice(0, 5).map((e, i) => ({ ...e, key: i })),
-  );
+  const flow = useRef<HTMLDivElement>(null);
+  const [wires, setWires] = useState<Wire[]>([]);
 
   useEffect(() => {
     const id = window.setTimeout(() => setReady(true), 80);
@@ -99,16 +84,15 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    if (!ready || reduced) return;
-    let next = 5;
-    const id = window.setInterval(() => {
-      // built outside the updater: StrictMode runs updaters twice
-      const item = { ...EVENTS[next % EVENTS.length], key: next };
-      next += 1;
-      setFeed((f) => [item, ...f.slice(0, 4)]);
-    }, 2600);
-    return () => window.clearInterval(id);
-  }, [ready, reduced]);
+    const root = flow.current;
+    if (!root) return;
+    const update = () => setWires(measure(root));
+    const ro = new ResizeObserver(update);
+    ro.observe(root);
+    // the web font changes chip widths after first paint
+    document.fonts.ready.then(update);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <section className={styles.hero} data-ready={ready}>
@@ -138,98 +122,53 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* An example of what we build: a company's own operations app. */}
-      <div className={styles.app} aria-hidden="true">
-        <div className={styles.bar}>
-          <span className={styles.dots}>
-            <i />
-            <i />
-            <i />
-          </span>
-          <span className={styles.url}>yourbusiness.app/overview</span>
-          <span className={styles.live}>Live</span>
+      {/* What we do, as a picture: scattered tools in, one system, results out. */}
+      <div className={styles.flow} ref={flow} aria-hidden="true">
+        <svg className={styles.wires}>
+          {wires.map((w, i) => (
+            <g key={i} data-side={w.side}>
+              <path d={w.d} pathLength={1} />
+              {reduced ? null : (
+                <circle r="3">
+                  {/* negative begin: every dot is already mid-journey */}
+                  <animateMotion
+                    dur="2.4s"
+                    begin={`${-((i * 0.53) % 2.4)}s`}
+                    repeatCount="indefinite"
+                    path={w.d}
+                  />
+                </circle>
+              )}
+            </g>
+          ))}
+        </svg>
+
+        <div className={styles.col}>
+          <span className={styles.colLabel}>Before</span>
+          <ul>
+            {BEFORE.map((label, i) => (
+              <li key={label} data-node="in" style={{ ["--i" as string]: i }}>
+                {label}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className={styles.body}>
-          <nav className={styles.nav}>
-            {NAV.map((n, i) => (
-              <span key={n} data-active={i === 0}>
-                {n}
-              </span>
+        <div className={styles.core} data-core>
+          <span className={styles.coreLabel}>Built by {site.name}</span>
+          <strong>Your system</strong>
+          <span>One place for every order, task and number.</span>
+        </div>
+
+        <div className={styles.col} data-side="out">
+          <span className={styles.colLabel}>After</span>
+          <ul>
+            {AFTER.map((label, i) => (
+              <li key={label} data-node="out" style={{ ["--i" as string]: i }}>
+                {label}
+              </li>
             ))}
-          </nav>
-
-          <div className={styles.main}>
-            <div className={styles.kpis}>
-              <div>
-                <span>Revenue this month</span>
-                <strong>
-                  <Count to={482190} start={ready} prefix="$" />
-                </strong>
-                <em>+18.4% vs last month</em>
-              </div>
-              <div>
-                <span>Orders</span>
-                <strong>
-                  <Count to={1284} start={ready} />
-                </strong>
-                <em>+9.1% vs last month</em>
-              </div>
-              <div>
-                <span>Hours saved by automation</span>
-                <strong>
-                  <Count to={312} start={ready} suffix=" h" />
-                </strong>
-                <em>Across 14 workflows</em>
-              </div>
-            </div>
-
-            <div className={styles.panels}>
-              <div className={styles.chart}>
-                <span className={styles.panelTitle}>
-                  Revenue, last 12 weeks
-                </span>
-                <div className={styles.plot}>
-                  <svg
-                    viewBox={`0 0 ${CHART_W} ${CHART_H}`}
-                    preserveAspectRatio="none"
-                  >
-                    {[0.25, 0.5, 0.75].map((f) => (
-                      <line
-                        key={f}
-                        x1="0"
-                        x2={CHART_W}
-                        y1={CHART_H * f}
-                        y2={CHART_H * f}
-                      />
-                    ))}
-                    <path className={styles.area} d={AREA} />
-                    <path className={styles.line} d={LINE} pathLength={1} />
-                  </svg>
-                  <span
-                    className={styles.point}
-                    style={{
-                      left: `${(lastX / CHART_W) * 100}%`,
-                      top: `${(lastY / CHART_H) * 100}%`,
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.feed}>
-                <span className={styles.panelTitle}>AI automations</span>
-                <ul>
-                  {feed.map((e, i) => (
-                    <li key={e.key}>
-                      <b>{e.tag}</b>
-                      <span>{e.text}</span>
-                      <time>{i ? `${i * 2}m ago` : "just now"}</time>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+          </ul>
         </div>
       </div>
     </section>

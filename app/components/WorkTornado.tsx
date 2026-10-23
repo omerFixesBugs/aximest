@@ -69,9 +69,7 @@ export default function WorkTornado() {
     const stageEl = stage.current;
     if (!sectionEl || !stageEl) return;
 
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!desktop.matches || still.matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const cards = Array.from(
       stageEl.querySelectorAll<HTMLElement>("[data-card]"),
@@ -375,8 +373,7 @@ export default function WorkTornado() {
         </div>
       </section>
 
-      {/* Below 1024px, and wherever motion is turned down, the same projects as
-          a plain list — the helix needs both the room and the movement. */}
+      {/* Wherever motion is turned down, the same projects as a plain list. */}
       <section className={styles.fallback}>
         <div className={styles.head}>
           <span className={styles.slash}>/</span>

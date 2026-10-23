@@ -201,23 +201,39 @@ export const nav = [
    --------------------------------------------------------------- */
 
 export const projects = [
-  { n: "01", name: "Styllar", kind: "Marketplace", group: "Web 3", image: "/images/projects/styllar.jpg",
+  { n: "01", name: "Styllar", slug: "styllar", kind: "Marketplace", group: "Web 3", image: "/images/projects/styllar.jpg",
+    scope: ["Cross-chain marketplace", "On-chain royalties", "Batch listings", "High-volume settlement layer"],
     body: "A cross-chain marketplace with on-chain royalties, batch listings and a settlement layer built for volume." },
-  { n: "02", name: "Sonr", kind: "Layer 1", group: "Web 3", image: "/images/projects/sonr.jpg",
+  { n: "02", name: "Sonr", slug: "sonr", kind: "Layer 1", group: "Web 3", image: "/images/projects/sonr.jpg",
+    scope: ["Protocol design", "Validator tooling", "An SDK that keeps app teams clear of consensus"],
     body: "Protocol design, validator tooling and an SDK that lets application teams ship without touching consensus." },
-  { n: "03", name: "Formula E: High Voltage", kind: "GameFi", group: "Web 3", image: "/images/projects/formula-e.jpg",
+  { n: "03", name: "Formula E: High Voltage", slug: "formula-e-high-voltage", kind: "GameFi", group: "Web 3", image: "/images/projects/formula-e.jpg",
+    scope: ["Racing title", "Tokenised in-game assets", "In-game economy", "Custody layer players never see"],
     body: "A racing title with tokenised assets, an in-game economy and a custody layer players never have to think about." },
-  { n: "04", name: "Northbound Health", kind: "Platform", group: "Web 2", image: "/images/projects/northbound-health.jpg",
+  { n: "04", name: "Northbound Health", slug: "northbound-health", kind: "Platform", group: "Web 2", image: "/images/projects/northbound-health.jpg",
+    scope: ["Patient scheduling", "Health records", "Billing", "HIPAA-compliant platform"],
     body: "A HIPAA-compliant care platform: scheduling, records and billing consolidated into one operational system." },
-  { n: "05", name: "Cargoline", kind: "Logistics", group: "Web 2", image: "/images/projects/cargoline.jpg",
+  { n: "05", name: "Cargoline", slug: "cargoline", kind: "Logistics", group: "Web 2", image: "/images/projects/cargoline.jpg",
+    scope: ["Fleet telemetry", "Route optimisation", "Dispatch console", "Replaced a decade of spreadsheets"],
     body: "Fleet telemetry, route optimisation and a dispatch console replacing a decade of spreadsheets." },
-  { n: "06", name: "Ledgerbase", kind: "Fintech", group: "Web 2", image: "/images/projects/ledgerbase.jpg",
+  { n: "06", name: "Ledgerbase", slug: "ledgerbase", kind: "Fintech", group: "Web 2", image: "/images/projects/ledgerbase.jpg",
+    scope: ["Double-entry ledger", "Reconciliation engine", "Built for millions of daily postings"],
     body: "A double-entry ledger and reconciliation engine handling millions of daily postings." },
 ];
 
 export const projectGroups = ["Web 3", "Web 2"];
 
-export type CardItem = { title: string; body: string; href: string };
+/** A card on the home page, and the detail page its Explore opens. */
+export type CardItem = {
+  title: string;
+  body: string;
+  slug: string;
+  /** Opening paragraph on the detail page. */
+  intro: string;
+  /** What we build or cover, listed on the detail page. */
+  points: string[];
+  image?: string;
+};
 
 /** The three card grids that follow the testimonial on the home page. */
 export const cardGrids: {
@@ -226,6 +242,8 @@ export const cardGrids: {
   code: string;
   title: string;
   aside: string;
+  /** Where the detail pages live: `${base}/${item.slug}`. */
+  base: string;
   /** Four to a row across the full page width instead of three under the title. */
   wide?: boolean;
   items: CardItem[];
@@ -236,18 +254,74 @@ export const cardGrids: {
     code: "IND",
     title: "Built for your sector",
     aside: "We ship production systems in the industries that run on reliable software.",
+    base: "/industries",
     items: [
-      { title: "Automotive", body: "Retail, dealer, and marketing platforms.", href: "/contact" },
-      { title: "Oil & Gas / Energy", body: "Systems for offshore and resource operators.", href: "/contact" },
-      { title: "Distribution", body: "Supply-chain and inventory platforms.", href: "/contact" },
-      { title: "Healthcare", body: "HIPAA-ready clinical and lab software.", href: "/contact" },
-      { title: "E-commerce & Retail", body: "Storefronts built to scale.", href: "/contact" },
-      { title: "Insurance", body: "Quoting, policy, and claims systems.", href: "/contact" },
-      { title: "Financial Services", body: "Regulated fintech and compliance.", href: "/contact" },
-      { title: "Real Estate", body: "PropTech and investment platforms.", href: "/contact" },
-      { title: "Research & Public Sector", body: "Data platforms for research teams.", href: "/contact" },
-      { title: "Media & Out-of-Home", body: "Advertising and content systems.", href: "/contact" },
-      { title: "Crypto & Web3", body: "Protocols, smart contracts, and audits.", href: "/contact" },
+      {
+        title: "Automotive", slug: "automotive",
+        body: "Retail, dealer, and marketing platforms.",
+        intro: "Dealer groups and automotive retailers run on stock, leads and service bookings spread across too many tools. We build the platforms that bring them into one place, from the showroom floor to the service bay.",
+        points: ["Dealer management and inventory systems", "Online showrooms and vehicle listings", "Lead capture, CRM and follow-up automation", "Service booking and workshop scheduling"],
+      },
+      {
+        title: "Oil & Gas / Energy", slug: "oil-gas-energy",
+        body: "Systems for offshore and resource operators.",
+        intro: "Operators in energy and resources need software that holds up in remote sites and audited environments. We build the systems that track assets, crews and output, and report on them without manual work.",
+        points: ["Asset and maintenance management", "Field data capture that works offline", "Operational dashboards and reporting", "Health, safety and compliance workflows"],
+      },
+      {
+        title: "Distribution", slug: "distribution",
+        body: "Supply-chain and inventory platforms.",
+        intro: "Distributors live or die on knowing what is in stock, where it is and when it will arrive. We build the supply-chain software that answers those questions in real time.",
+        points: ["Inventory and warehouse management", "Order processing and fulfilment", "Route planning and delivery tracking", "Supplier and purchase automation"],
+      },
+      {
+        title: "Healthcare", slug: "healthcare",
+        body: "HIPAA-ready clinical and lab software.",
+        intro: "Clinics, labs and care providers need software that is fast for staff and careful with patient data. We build clinical and operational systems designed around privacy and compliance from the start.",
+        points: ["Patient records and scheduling", "Lab and diagnostics workflows", "Billing and claims processing", "Privacy-first architecture, built to HIPAA standards"],
+      },
+      {
+        title: "E-commerce & Retail", slug: "ecommerce-retail",
+        body: "Storefronts built to scale.",
+        intro: "Retailers need storefronts that stay fast on their busiest day and back offices that keep up with every order. We build both, connected to the stock, payment and delivery systems behind them.",
+        points: ["Custom storefronts and mobile shopping apps", "Point of sale and multi-store inventory", "Payments, promotions and loyalty", "Sales analytics and demand forecasting"],
+      },
+      {
+        title: "Insurance", slug: "insurance",
+        body: "Quoting, policy, and claims systems.",
+        intro: "Insurers and brokers handle large volumes of quotes, policies and claims that still move by email and spreadsheet. We build the systems that make each step faster and easier to audit.",
+        points: ["Quoting and underwriting tools", "Policy administration", "Claims intake and processing", "Customer and broker portals"],
+      },
+      {
+        title: "Financial Services", slug: "financial-services",
+        body: "Regulated fintech and compliance.",
+        intro: "Financial products carry strict rules on security, accuracy and reporting. We build fintech platforms and internal tools that meet those rules without slowing the business down.",
+        points: ["Ledgers, payments and reconciliation", "KYC, onboarding and compliance checks", "Lending and account management platforms", "Regulatory and management reporting"],
+      },
+      {
+        title: "Real Estate", slug: "real-estate",
+        body: "PropTech and investment platforms.",
+        intro: "Developers, agencies and property investors juggle listings, tenants and money across many systems. We build PropTech that keeps every property and every payment in view.",
+        points: ["Listing and property portals", "Tenant, lease and maintenance management", "Investment and portfolio tracking", "Sales pipelines and agent tools"],
+      },
+      {
+        title: "Research & Public Sector", slug: "research-public-sector",
+        body: "Data platforms for research teams.",
+        intro: "Research teams and public bodies collect large amounts of data that is hard to bring together and share. We build data platforms that make it usable, secure and easy to report on.",
+        points: ["Data collection and survey platforms", "Data warehouses and pipelines", "Dashboards and public reporting", "Secure access and permission controls"],
+      },
+      {
+        title: "Media & Out-of-Home", slug: "media-out-of-home",
+        body: "Advertising and content systems.",
+        intro: "Media owners and advertisers need to plan, sell and prove every campaign. We build the content and advertising systems that run inventory, bookings and reporting in one place.",
+        points: ["Ad inventory and booking systems", "Content management and scheduling", "Campaign reporting and proof of play", "Audience data and analytics"],
+      },
+      {
+        title: "Crypto & Web3", slug: "crypto-web3",
+        body: "Protocols, smart contracts, and audits.",
+        intro: "Web3 teams need engineering that is right the first time, because code on chain is hard to change. We build protocols, smart contracts and the apps people use to reach them.",
+        points: ["Smart contract development and reviews", "Layer 1 and Layer 2 protocol work", "Wallets, marketplaces and dApp frontends", "Token, custody and settlement systems"],
+      },
     ],
   },
   {
@@ -256,13 +330,34 @@ export const cardGrids: {
     code: "PRD",
     title: "We ship our own software",
     aside: "Products we built, own, and run in production.",
+    base: "/products",
     wide: true,
     // TODO: placeholders drawn from the services Aximest sells — swap in the real product names.
     items: [
-      { title: "Aximest ERP", body: "Inventory, finance and HR in one operational system.", href: "/contact" },
-      { title: "Aximest CRM", body: "Leads, deals and follow-ups your sales team will actually use.", href: "/contact" },
-      { title: "Pulse Dashboards", body: "Live business metrics from every system you already run.", href: "/contact" },
-      { title: "Inbox Agent", body: "Support email sorted, routed and answered by AI.", href: "/contact" },
+      {
+        title: "Aximest ERP", slug: "aximest-erp",
+        body: "Inventory, finance and HR in one operational system.",
+        intro: "One system for the whole operation. Orders, stock, finance and people sit in the same place, and AI automations take the repetitive work off your team.",
+        points: ["Orders, inventory and purchasing", "Finance, invoicing and bank matching", "HR, leave and payroll", "AI automations and scheduled reports"],
+      },
+      {
+        title: "Aximest CRM", slug: "aximest-crm",
+        body: "Leads, deals and follow-ups your sales team will actually use.",
+        intro: "A sales pipeline your team will keep up to date, because it does the busywork for them. Every lead, deal and follow-up is tracked, and AI drafts the next message.",
+        points: ["Visual deal pipeline", "Contact and company records", "AI-written follow-ups and sequences", "Win-rate and revenue reporting"],
+      },
+      {
+        title: "Pulse Dashboards", slug: "pulse-dashboards",
+        body: "Live business metrics from every system you already run.",
+        intro: "Your key numbers, live, from the systems you already use. Pulse connects to your sales, stock, ads and bank data and turns it into dashboards your managers will check every day.",
+        points: ["Connectors for ERP, POS, ads and bank data", "Live KPI dashboards", "Breakdowns by region, product and customer", "Alerts when a number moves"],
+      },
+      {
+        title: "Inbox Agent", slug: "inbox-agent",
+        body: "Support email sorted, routed and answered by AI.",
+        intro: "An AI agent that works your support inbox. It reads every email, tags it, answers the routine ones and drafts replies for the rest, so customers hear back in minutes instead of hours.",
+        points: ["Reads and tags every incoming email", "Answers routine questions on its own", "Drafts replies for your team to approve", "Routes sales and urgent emails to the right person"],
+      },
     ],
   },
   {
@@ -271,7 +366,15 @@ export const cardGrids: {
     code: "PRJ",
     title: "Software our clients run on",
     aside: "Real engagements, shipped and running in production.",
-    items: projects.map((p) => ({ title: p.name, body: p.body, href: "/projects" })),
+    base: "/work",
+    items: projects.map((p) => ({
+      title: p.name,
+      body: p.body,
+      slug: p.slug,
+      intro: `A ${p.kind} project from our ${p.group} work, shipped and running in production.`,
+      points: p.scope,
+      image: p.image,
+    })),
   },
 ];
 
@@ -489,9 +592,14 @@ export const about = {
       bio: "Software developer and AI engineer. Leads Aximest and the engineering behind its AI and automation work. Previously a CTO.",
     },
     {
-      name: "Toaufiq Jamal",
+      name: "Mehdi Iqbal",
       role: "Chief Operating Officer",
       bio: "Runs delivery and day-to-day operations. Keeps every project staffed, on schedule and on budget, and makes sure what was promised is what ships.",
+    },
+    {
+      name: "Taufiq Jamal",
+      role: "Chief Financial Officer",
+      bio: "Owns the company's finances: budgets, billing, contracts and reporting. Keeps pricing clear and every engagement on a sound financial footing.",
     },
     {
       name: "Sayed Sadman",
@@ -499,14 +607,14 @@ export const about = {
       bio: "Owns the technical direction across every project: stack choices, code quality, security and the engineering standards our teams build to.",
     },
     {
-      name: "Mehdi Iqbal",
-      role: "Head of Product and Architecture",
-      bio: "Scopes products and designs their architecture, from the first workshop to production, so what we build fits how your business actually runs.",
-    },
-    {
       name: "Muhammad Mosleh Uddin",
       role: "Head of Business Development",
       bio: "Your first point of contact. Understands what you need to improve, shapes the engagement and stays involved as the senior point of escalation.",
+    },
+    {
+      name: "Maruf Hossain Riyaz",
+      role: "Head of Marketing",
+      bio: "Leads the Aximest brand and how we tell our story: positioning, content and campaigns that show what our software does for clients.",
     },
   ] as { name: string; role: string; bio?: string; note?: string }[],
   faq: [
