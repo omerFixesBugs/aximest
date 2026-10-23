@@ -270,3 +270,6 @@
 @media (prefers-reduced-motion: reduce) {
   .cap, .cap::before { transition: none; }
 }
+
+/* the product pages' demo window, between the list and "More in" */
+.demo { padding-bottom: var(--clamp-from-100-80); }

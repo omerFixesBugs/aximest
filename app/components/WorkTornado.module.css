@@ -6,13 +6,8 @@
    ============================================================ */
 .section {
   position: relative;
-  display: none;
   background: var(--black);
   color: var(--white);
-}
-
-@media (min-width: 1024px) {
-  .section { display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -212,13 +207,10 @@
    Fallback list
    ============================================================ */
 .fallback {
+  display: none;
   background: var(--black);
   color: var(--white);
   padding: var(--clamp-from-100-80) var(--grid-margin) var(--clamp-from-140-80);
-}
-
-@media (min-width: 1024px) {
-  .fallback { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -248,6 +240,25 @@
 }
 
 .fallback .cardInner:hover { transform: translateY(-4px); }
+
+/* Narrower screens: the helix grows relative to the width and centres under
+   the heading, and the side scrim eases off so it doesn't swallow the cards. */
+@media (max-width: 1023px) {
+  .stage { font-size: max(7px, 1.5vw); left: 6%; }
+}
+
+@media (max-width: 699px) {
+  .stage { font-size: 2.1vw; left: 0; top: 8%; }
+  .sticky::after {
+    background: linear-gradient(
+      180deg,
+      #000 0%,
+      rgba(0, 0, 0, 0.72) 22%,
+      rgba(0, 0, 0, 0) 36%
+    );
+  }
+  .note { left: var(--grid-margin); max-width: none; text-align: left; }
+}
 
 /* Three grid columns is a sliver on a phone; the head becomes a simple row. */
 @media (max-width: 699px) {

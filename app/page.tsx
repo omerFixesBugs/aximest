@@ -8,6 +8,7 @@ import styles from "./page.module.css";
 import Pillars from "./components/Pillars";
 import Testimonial from "./components/Testimonial";
 import CardGrid from "./components/CardGrid";
+import ProductDemo from "./components/ProductDemo";
 import { cardGrids } from "./lib/site";
 
 export default function Home() {
@@ -32,7 +33,9 @@ export default function Home() {
         <Pillars />
         <Testimonial />
         {cardGrids.map((grid) => (
-          <CardGrid key={grid.id} grid={grid} />
+          <CardGrid key={grid.id} grid={grid}>
+            {grid.id === "products" ? <ProductDemo /> : null}
+          </CardGrid>
         ))}
       </ThemeZone>
     </>

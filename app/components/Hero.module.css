@@ -94,60 +94,109 @@
   gap: var(--clamp-8);
 }
 
-/* ---- the app window ---- */
-.app {
-  --line: rgba(255, 255, 255, 0.12);
-  --muted: var(--grey-600);
-
+/* ---- the flow: scattered tools in, one system, results out ---- */
+.flow {
+  position: relative;
   flex: 1;
   min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1fr);
+  column-gap: clamp(48px, 9vw, 180px);
+  align-items: center;
+  padding-bottom: var(--clamp-40);
+}
+
+.wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wires path {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.32);
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.2s var(--ease-power2-out) 0.9s;
+}
+
+/* raw data rides in black, finished work rides out white */
+.wires circle { fill: var(--black); opacity: 0; transition: opacity 0.4s linear 1.8s; }
+.wires [data-side="out"] circle { fill: var(--white); }
+
+.col {
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--black);
-  color: var(--white);
-  border-radius: var(--clamp-8) var(--clamp-8) 0 0;
-  overflow: hidden;
-  transform: translateY(40%);
-  opacity: 0;
-  transition:
-    transform 1.4s var(--ease-expo-out) 0.5s,
-    opacity 0.4s linear 0.5s;
+  gap: var(--clamp-12);
 }
 
-.bar {
+.col ul {
   display: flex;
-  align-items: center;
-  gap: var(--clamp-16);
-  padding: var(--clamp-12) var(--clamp-16);
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.colLabel {
   font-family: var(--font-mono);
   font-size: var(--clamp-12);
+  text-transform: uppercase;
 }
 
-.dots { display: flex; gap: 6px; }
-
-.dots i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+.col li {
+  width: fit-content;
+  padding: 10px 14px;
+  border: 1px dashed rgba(0, 0, 0, 0.45);
+  border-radius: 4px;
+  font-size: var(--clamp-14);
+  line-height: 1;
+  /* fade only: the wires are measured from these boxes, so no transforms */
+  opacity: 0;
+  transition: opacity 0.5s linear calc(0.5s + var(--i) * 0.08s);
 }
 
-.url {
-  flex: 1;
-  color: var(--muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* the after side reads right to left: chips hug the right edge */
+.col[data-side="out"] { align-items: flex-end; }
+.col[data-side="out"] ul { align-items: flex-end; }
+
+.col[data-side="out"] li {
+  border: 0;
+  background: var(--black);
+  color: var(--white);
+  transition-delay: calc(1.6s + var(--i) * 0.08s);
 }
 
-.live {
+.core {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--clamp-12);
+  padding: var(--clamp-24);
+  background: var(--black);
+  color: var(--white);
+  border-radius: var(--clamp-8);
+  opacity: 0;
+  transition: opacity 0.6s linear 0.9s;
+}
+
+.coreLabel {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--clamp-12);
+  text-transform: uppercase;
+  color: var(--grey-600);
 }
 
-.live::before {
+.coreLabel::before {
   content: "";
   width: 8px;
   height: 8px;
@@ -161,208 +210,28 @@
   100% { box-shadow: 0 0 0 10px rgba(222, 88, 73, 0); }
 }
 
-.body {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(150px, 2fr) 10fr;
-}
-
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: var(--clamp-16) var(--clamp-12);
-  border-right: 1px solid var(--line);
-  font-size: var(--clamp-14);
-}
-
-.nav span {
-  padding: 8px 10px;
-  border-radius: 4px;
-  color: var(--muted);
-}
-
-.nav span[data-active="true"] {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
-}
-
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--clamp-16);
-  padding: var(--clamp-20);
-  min-width: 0;
-}
-
-.kpis {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border: 1px solid var(--line);
-  border-radius: 6px;
-}
-
-.kpis > div {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: var(--clamp-16);
-}
-
-.kpis > div + div { border-left: 1px solid var(--line); }
-
-.kpis span,
-.panelTitle {
-  color: var(--muted);
-  font-size: var(--clamp-13);
-}
-
-.kpis strong {
+.core strong {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: var(--clamp-32);
+  font-size: var(--clamp-40);
   line-height: 1;
   letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
 }
 
-.kpis em {
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: var(--clamp-12);
-  color: var(--muted);
-}
-
-.panels {
-  display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: var(--clamp-16);
-  flex: 1;
-  min-height: 260px;
-  max-height: 520px;
-}
-
-.chart,
-.feed {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--clamp-16);
-  padding: var(--clamp-16);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  min-width: 0;
-}
-
-.plot {
-  position: relative;
-  flex: 1;
-  min-height: 160px;
-}
-
-.chart svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.chart line {
-  stroke: var(--line);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-}
-
-.area {
-  fill: var(--red-500);
-  opacity: 0;
-  transition: opacity 1s linear 1.6s;
-}
-
-.line {
-  fill: none;
-  stroke: var(--red-500);
-  stroke-width: 2;
-  vector-effect: non-scaling-stroke;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1.6s var(--ease-power2-out) 1s;
-}
-
-/* sits on the chart's last point */
-.point {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  margin: -5px 0 0 -5px;
-  border-radius: 50%;
-  background: var(--red-500);
-  opacity: 0;
-  transition: opacity 0.3s linear 2.5s;
-  animation: pulse 1.8s ease-out infinite;
-}
-
-.feed ul {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.feed li {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 10px;
-  align-items: baseline;
-  padding: 10px 0;
-  border-top: 1px solid var(--line);
-  font-size: var(--clamp-13);
-  animation: arrive 0.6s var(--ease-expo-out);
-}
-
-.feed li:first-child { border-top: 0; }
-
-.feed li span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.feed b {
-  font-weight: 400;
-  font-family: var(--font-mono);
-  font-size: var(--clamp-11);
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 3px;
-  background: rgba(222, 88, 73, 0.18);
-  color: #f08c80;
-}
-
-.feed time {
-  font-family: var(--font-mono);
-  font-size: var(--clamp-11);
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-@keyframes arrive {
-  from { opacity: 0; transform: translateY(-8px); background: rgba(255, 255, 255, 0.06); }
+.core span:last-child {
+  font-size: var(--clamp-14);
+  line-height: 1.4;
+  color: var(--grey-600);
 }
 
 /* ---- load sequence ---- */
 .hero[data-ready="true"] .meta span,
 .hero[data-ready="true"] .headline span { opacity: 1; transform: none; }
 .hero[data-ready="true"] .side,
-.hero[data-ready="true"] .app,
-.hero[data-ready="true"] .point { opacity: 1; }
-.hero[data-ready="true"] .app { transform: none; }
-.hero[data-ready="true"] .area { opacity: 0.14; }
-.hero[data-ready="true"] .line { stroke-dashoffset: 0; }
+.hero[data-ready="true"] .wires circle,
+.hero[data-ready="true"] .col li,
+.hero[data-ready="true"] .core { opacity: 1; }
+.hero[data-ready="true"] .wires path { stroke-dashoffset: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero *, .hero *::before { transition: none !important; animation: none !important; }
@@ -372,23 +241,21 @@
 @media (max-width: 999px) {
   .headline, .side { grid-column: 1 / -1; }
   .side { flex-direction: row; align-items: flex-end; justify-content: space-between; }
-  .body { grid-template-columns: 1fr; }
-  .nav { display: none; }
+  .flow { column-gap: 48px; }
 }
 
-/* ---- phone: headline, pitch, then the app as KPIs + live feed ---- */
+/* ---- phone: the flow runs top to bottom, chips wrap into rows ---- */
 @media (max-width: 699px) {
   .hero { padding-top: calc(var(--header-bar-height) + var(--clamp-24)); min-height: 600px; }
   .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 6px; }
   .intro { padding: var(--clamp-28) 0 var(--clamp-28); }
   .side { flex-direction: column; align-items: stretch; }
   .lede { font-size: 15px; }
-  .main { padding: 12px; gap: 12px; }
-  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .kpis > div { padding: 12px; }
-  .kpis > div:nth-child(3) { display: none; }
-  .kpis strong { font-size: 24px; }
-  .panels { grid-template-columns: 1fr; }
-  .chart { display: none; }
-  .url { font-size: 11px; }
+  .flow { grid-template-columns: 1fr; row-gap: 28px; align-content: center; }
+  .col, .col[data-side="out"] { align-items: center; }
+  .col ul, .col[data-side="out"] ul { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .colLabel { display: none; }
+  .col li { padding: 7px 10px; font-size: 12px; }
+  .core { padding: 16px; align-items: center; text-align: center; }
+  .core span:last-child { display: none; }
 }
