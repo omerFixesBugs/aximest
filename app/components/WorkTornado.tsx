@@ -42,11 +42,14 @@ const HOLD = 0.5;
 const CLIMB = 1;
 /** How far the helix lags its scrubbed target each frame. */
 const FOLLOW_EASE = 0.16;
+/** Same, while a finger or mouse is holding it: close enough to feel direct. */
+const DRAG_EASE = 0.45;
 
-/* Grab-and-spin, layered over the scrubbed position as an offset. */
-const DRAG_SPEED = 0.00075;
-const DRAG_DECAY = 0.1;
-const MAX_DRAG_SPEED = 0.2;
+/* Grab-and-spin, layered over the scrubbed position as an offset. The stack
+   moves with the pointer (one card per card gap dragged), then coasts on the
+   release speed. */
+const FLING_FRICTION = 0.9;
+const MAX_FLING = 0.4;
 const DRAG_MINIMUM = 6;
 
 const MIN_BATCHES = 2;
@@ -70,6 +73,7 @@ export default function WorkTornado() {
     if (!sectionEl || !stageEl) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const blur = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
 
     const cards = Array.from(
       stageEl.querySelectorAll<HTMLElement>("[data-card]"),
@@ -83,7 +87,9 @@ export default function WorkTornado() {
       scrollTarget: 0,
       /** What dragging has added to that. Persists on release. */
       dragOffset: 0,
+      /** Cards per frame left over from a fling. */
       dragVelocity: 0,
+      dragging: false,
       cardHeight: 0,
       cardGap: 0,
       em: 16,
@@ -143,8 +149,11 @@ export default function WorkTornado() {
         card.style.transform =
           `translate(-50%, -50%) translate3d(${Math.sin(rad) * radius}px, ${y}px, ` +
           `${(Math.cos(rad) - 1) * radius}px) rotateY(${deg}deg) scale(${scale})`;
-        card.style.filter =
-          `brightness(${1 - back * BACK_DARKNESS}) blur(${back * BACK_BLUR}em)`;
+        // blur on every card each frame is too heavy for phones; dimming alone
+        // still sinks the back of the helix
+        card.style.filter = blur
+          ? `brightness(${1 - back * BACK_DARKNESS}) blur(${back * BACK_BLUR}em)`
+          : `brightness(${1 - back * BACK_DARKNESS})`;
         card.style.zIndex = String(Math.round(centre * 1000));
         card.style.visibility = "visible";
         if (Math.abs(index) < nearest) {
@@ -177,13 +186,13 @@ export default function WorkTornado() {
 
     let frame = 0;
     const tick = () => {
-      if (state.dragVelocity) {
-        state.dragVelocity = lerp(state.dragVelocity, 0, DRAG_DECAY);
-        if (Math.abs(state.dragVelocity) < 0.00001) state.dragVelocity = 0;
+      if (!state.dragging && state.dragVelocity) {
         state.dragOffset += state.dragVelocity;
+        state.dragVelocity *= FLING_FRICTION;
+        if (Math.abs(state.dragVelocity) < 0.0005) state.dragVelocity = 0;
       }
       const target = state.scrollTarget + state.dragOffset;
-      const next = lerp(state.progress, target, FOLLOW_EASE);
+      const next = lerp(state.progress, target, state.dragging ? DRAG_EASE : FOLLOW_EASE);
       if (Math.abs(next - state.progress) > 0.0001) {
         state.progress = next;
         render();
@@ -193,7 +202,9 @@ export default function WorkTornado() {
 
     // ---- grab and spin -------------------------------------------------
     let pointerId: number | null = null;
+    let lastX = 0;
     let lastY = 0;
+    let lastTime = 0;
     let travelled = 0;
 
     // Inside a preserve-3d stage the browser hit-tests to the stage, never the
@@ -217,32 +228,48 @@ export default function WorkTornado() {
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       pointerId = e.pointerId;
+      lastX = e.clientX;
       lastY = e.clientY;
+      lastTime = e.timeStamp;
       travelled = 0;
+      state.dragVelocity = 0;
       stageEl.style.cursor = "grabbing";
     };
 
     const onMove = (e: PointerEvent) => {
       if (pointerId !== e.pointerId) return;
-      const delta = e.clientY - lastY;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      // Down and right both spin it forward. On a phone a vertical swipe is
+      // the page's scroll, so sideways is how a finger spins it.
+      const delta = e.pointerType === "touch" || Math.abs(dx) > Math.abs(dy) ? dx : dy;
+      const dt = Math.max(1, e.timeStamp - lastTime);
+      lastX = e.clientX;
       lastY = e.clientY;
+      lastTime = e.timeStamp;
       travelled += Math.abs(delta);
       // A press that never travels DRAG_MINIMUM is a click, not a drag, so
       // the Explore links still work.
       if (travelled < DRAG_MINIMUM) return;
-      state.dragVelocity = clamp(
-        -MAX_DRAG_SPEED,
-        MAX_DRAG_SPEED,
-        state.dragVelocity + delta * DRAG_SPEED,
-      );
+      state.dragging = true;
+      const cards = delta / (state.cardGap || 1);
+      state.dragOffset += cards;
+      // release speed, in cards per 60fps frame
+      state.dragVelocity = clamp(-MAX_FLING, MAX_FLING, (cards / dt) * 16.7);
     };
 
     const onUp = (e: PointerEvent) => {
       if (pointerId !== e.pointerId) return;
       pointerId = null;
+      state.dragging = false;
+      // a pointer that stopped before letting go doesn't fling
+      if (e.timeStamp - lastTime > 80) state.dragVelocity = 0;
       stageEl.style.cursor = "grab";
-      // a press that never became a drag is a click
-      if (travelled < DRAG_MINIMUM) ctaAt(e.clientX, e.clientY)?.click();
+      // a press that never became a drag is a click; a touch the browser took
+      // over for scrolling (pointercancel) is neither
+      if (e.type === "pointerup" && travelled < DRAG_MINIMUM) {
+        ctaAt(e.clientX, e.clientY)?.click();
+      }
     };
 
     const onScroll = () => readScroll();
