@@ -55,14 +55,17 @@ export default function LogoScene({
       const { RoomEnvironment } = await import("three/addons/environments/RoomEnvironment.js");
       if (disposed) return;
 
+      // phones: smaller buffer, no MSAA — the symbol is small there and older
+      // GPUs drop frames rendering it at 2x with antialiasing
+      const touch = window.matchMedia("(pointer: coarse)").matches;
       let renderer: import("three").WebGLRenderer;
       try {
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+        renderer = new THREE.WebGLRenderer({ antialias: !touch, alpha: true, powerPreference: "high-performance" });
       } catch {
         setState("failed");
         return;
       }
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, touch ? 1.5 : 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.05;
       el.appendChild(renderer.domElement);

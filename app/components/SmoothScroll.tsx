@@ -12,6 +12,8 @@ declare global {
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // touch scrolling stays native under Lenis anyway; skip its per-frame loop
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const lenis = new Lenis({
       duration: 1.1,

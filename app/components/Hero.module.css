@@ -246,7 +246,8 @@
 
 /* ---- phone: the flow runs top to bottom, chips wrap into rows ---- */
 @media (max-width: 699px) {
-  .hero { padding-top: calc(var(--header-bar-height) + var(--clamp-24)); min-height: 600px; }
+  /* grows past one screen on short phones so the flow can't ride up over the buttons */
+  .hero { padding-top: calc(var(--header-bar-height) + var(--clamp-24)); height: auto; min-height: max(100svh, 600px); }
   .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 6px; }
   .intro { padding: var(--clamp-28) 0 var(--clamp-28); }
   .side { flex-direction: column; align-items: stretch; }
