@@ -177,13 +177,41 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--clamp-12);
-  padding: var(--clamp-24);
-  background: var(--black);
-  color: var(--white);
-  border-radius: var(--clamp-8);
+  align-items: center;
+  gap: var(--clamp-16);
+}
+
+.mark {
+  display: block;
+  height: clamp(120px, 15vw, 240px);
+  aspect-ratio: 78 / 90;
+  overflow: visible;
+  fill: none;
+  stroke-linejoin: round;
+}
+
+.markBase {
+  stroke: var(--black);
+  stroke-width: 4.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.6s var(--ease-power2-out) 0.5s;
+}
+
+/* a short white signal running the loop, the same white as finished work */
+.markPulse {
+  stroke: var(--white);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.06 0.94;
   opacity: 0;
-  transition: opacity 0.6s linear 0.9s;
+  transition: opacity 0.4s linear 2s;
+  animation: signal 3.2s linear infinite;
+}
+
+@keyframes signal {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
 }
 
 .coreLabel {
@@ -193,7 +221,9 @@
   font-family: var(--font-mono);
   font-size: var(--clamp-12);
   text-transform: uppercase;
-  color: var(--grey-600);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.6s linear 1.6s;
 }
 
 .coreLabel::before {
@@ -201,27 +231,13 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--red-500);
+  background: var(--white);
   animation: pulse 1.8s ease-out infinite;
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(222, 88, 73, 0.7); }
-  100% { box-shadow: 0 0 0 10px rgba(222, 88, 73, 0); }
-}
-
-.core strong {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: var(--clamp-40);
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.core span:last-child {
-  font-size: var(--clamp-14);
-  line-height: 1.4;
-  color: var(--grey-600);
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8); }
+  100% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
 }
 
 /* ---- load sequence ---- */
@@ -230,11 +246,14 @@
 .hero[data-ready="true"] .side,
 .hero[data-ready="true"] .wires circle,
 .hero[data-ready="true"] .col li,
-.hero[data-ready="true"] .core { opacity: 1; }
-.hero[data-ready="true"] .wires path { stroke-dashoffset: 0; }
+.hero[data-ready="true"] .coreLabel,
+.hero[data-ready="true"] .markPulse { opacity: 1; }
+.hero[data-ready="true"] .wires path,
+.hero[data-ready="true"] .markBase { stroke-dashoffset: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero *, .hero *::before { transition: none !important; animation: none !important; }
+  .markPulse { display: none; }
 }
 
 /* ---- tablet ---- */
@@ -257,6 +276,6 @@
   .col ul, .col[data-side="out"] ul { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px; }
   .colLabel { display: none; }
   .col li { padding: 7px 10px; font-size: 12px; }
-  .core { padding: 16px; align-items: center; text-align: center; }
-  .core span:last-child { display: none; }
+  .core { gap: 10px; }
+  .mark { height: 96px; }
 }

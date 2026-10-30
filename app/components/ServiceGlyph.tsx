@@ -1,119 +1,133 @@
+import type { CSSProperties, ReactNode } from "react";
 import styles from "./ServiceGlyph.module.css";
 
+const i = (n: number) => ({ ["--i" as string]: String(n) }) as CSSProperties;
+
+/** A tiny app window: the shared frame every service scene sits in. */
+function Window({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className={styles.window}>
+      <div className={styles.bar}>
+        <span className={styles.dots}>
+          <i />
+          <i />
+          <i />
+        </span>
+        <span>{title}</span>
+      </div>
+      <div className={styles.body}>{children}</div>
+    </div>
+  );
+}
+
 /**
- * Abstract service marks. The reference plays a looping Lottie in this slot,
- * so each mark here carries its own continuous loop rather than sitting still.
+ * Each service as a small piece of working software, looping on its own:
+ * what the service ships, rather than an abstract mark.
  */
 export default function ServiceGlyph({ id }: { id: string }) {
   switch (id) {
-    case "advisory":
-      // two discs drifting through each other
+    case "ai":
+      // a question, the assistant thinking, then the answer streaming in
       return (
-        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
-          <g className={styles.driftA}>
-            <circle cx="92" cy="60" r="58" fill="currentColor" />
-          </g>
-          <g className={styles.driftB}>
-            <circle cx="148" cy="60" r="58" fill="currentColor" />
-          </g>
-          <circle cx="120" cy="60" r="19" className={styles.pulseHole} />
-        </svg>
-      );
-
-    case "blockchain":
-      // chevrons marching right, the leader wrapping to the back
-      return (
-        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
-          <g className={styles.march}>
-            {[0, 1, 2, 3].map((i) => (
-              <path
-                key={i}
-                d={`M${26 + i * 56} 6h32l36 54-36 54H${26 + i * 56}l36-54-36-54Z`}
-                fill="currentColor"
-              />
-            ))}
-          </g>
-        </svg>
+        <Window title="assistant">
+          <div className={styles.chat}>
+            <p className={styles.ask}>Summarise this week&apos;s orders</p>
+            <p className={styles.typing}>
+              <i />
+              <i />
+              <i />
+            </p>
+            <div className={styles.answer}>
+              <span style={i(0)} />
+              <span style={i(1)} />
+              <span style={i(2)} />
+            </div>
+          </div>
+        </Window>
       );
 
     case "product-development":
-      // bars shearing in a travelling wave
+      // a wireframe whose blocks snap in, then fill with colour
       return (
-        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <rect
-              key={i}
-              className={styles.wave}
-              style={{ ["--i" as string]: String(i) }}
-              x={22 + i * 36}
-              y="6"
-              width="16"
-              height="108"
-              fill="currentColor"
-            />
-          ))}
-        </svg>
-      );
-
-    case "enterprise-software":
-      // a grid of blocks breathing out of phase
-      return (
-        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
-          {[
-            [34, 6],
-            [102, 6],
-            [34, 66],
-          ].map(([x, y], i) => (
-            <rect
-              key={i}
-              className={styles.breathe}
-              style={{ ["--i" as string]: String(i) }}
-              x={x}
-              y={y}
-              width="58"
-              height="48"
-              fill="currentColor"
-            />
-          ))}
-          <circle className={styles.orbit} cx="131" cy="90" r="26" fill="currentColor" />
-        </svg>
+        <Window title="app / v1.0">
+          <div className={styles.wire}>
+            <span className={styles.wNav} style={i(0)} />
+            <span className={styles.wHero} style={i(1)} />
+            <span className={styles.wCard} style={i(2)} />
+            <span className={styles.wCard} style={i(3)} />
+            <span className={styles.wCard} style={i(4)} />
+          </div>
+        </Window>
       );
 
     case "data":
-      // horizontal bars filling like a live chart, out of phase
+      // a live chart with its headline number
       return (
-        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
-          {[0, 1, 2, 3].map((i) => (
-            <rect
-              key={i}
-              className={styles.fill}
-              style={{ ["--i" as string]: String(i) }}
-              x="24"
-              y={6 + i * 28}
-              width="192"
-              height="20"
-              fill="currentColor"
-            />
-          ))}
-        </svg>
+        <Window title="reports">
+          <div className={styles.chart}>
+            <div className={styles.kpi}>
+              <strong>+18.4%</strong>
+              <span>revenue, 7d</span>
+            </div>
+            <div className={styles.bars}>
+              {[0.5, 0.7, 0.45, 0.8, 0.6, 0.9, 1].map((h, n) => (
+                <span key={n} style={{ ...i(n), ["--h" as string]: String(h) }} />
+              ))}
+            </div>
+          </div>
+        </Window>
+      );
+
+    case "enterprise-software":
+      // one ticket travelling the board, to do → doing → done
+      return (
+        <Window title="operations">
+          <div className={styles.board}>
+            {["To do", "Doing", "Done"].map((col) => (
+              <div key={col} className={styles.col}>
+                <em>{col}</em>
+                <span />
+              </div>
+            ))}
+            <span className={styles.ticket} />
+          </div>
+        </Window>
+      );
+
+    case "advisory":
+      // a roadmap filling milestone by milestone
+      return (
+        <Window title="roadmap">
+          <div className={styles.road}>
+            <span className={styles.track} />
+            {["Audit", "Plan", "Build", "Scale"].map((step, n) => (
+              <span key={step} className={styles.step} style={i(n)}>
+                <i />
+                {step}
+              </span>
+            ))}
+          </div>
+        </Window>
       );
 
     default:
-      // concentric rings turning at different rates
+      // blockchain: a conveyor of linked blocks. Two copies of the same four,
+      // marched four slots, so the loop restarts without a jump.
       return (
-        <svg viewBox="0 0 240 120" width="100%" height="100%" aria-hidden="true">
-          <g className={styles.spinSlow}>
-            <path
-              d="M120 2a58 58 0 1 1 0 116 58 58 0 0 1 0-116Zm0 16a42 42 0 1 0 0 84 42 42 0 0 0 0-84Z"
-              fill="currentColor"
-            />
-          </g>
-          <g className={styles.spinFast}>
-            <rect x="112" y="0" width="16" height="30" fill="currentColor" />
-            <rect x="112" y="90" width="16" height="30" fill="currentColor" />
-          </g>
-          <circle className={styles.corePulse} cx="120" cy="60" r="17" fill="currentColor" />
-        </svg>
+        <Window title="ledger">
+          <div className={styles.chain}>
+            <div className={styles.links}>
+              {[0, 1].flatMap((copy) =>
+                ["0x9c1", "0xa3f", "0xe07", "0x4b2"].map((hash) => (
+                  <span key={copy + hash} className={styles.block}>
+                    <em>block</em>
+                    {hash}
+                  </span>
+                )),
+              )}
+            </div>
+          </div>
+        </Window>
       );
   }
 }
