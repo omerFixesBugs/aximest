@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "bounce",
+        "createdAt": "2026-10-30T09:47:01.938Z",
+        "reason": "Claude: 'bounce' is the keyframe name for the AI typing-indicator dots bobbing with ease-in-out, not a bounce easing curve"
+      }
+    ]
+  }
+}

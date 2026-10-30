@@ -133,14 +133,12 @@
 .card:hover .media { background: var(--grey-200); }
 
 .glyph {
-  width: 100%;
-  aspect-ratio: 2;
-  color: var(--black);
-  /* the reference plays a Lottie here, multiplied over the panel */
-  mix-blend-mode: multiply;
+  width: 84%;
+  max-width: 420px;
+  transition: transform 0.6s var(--ease-expo-out);
 }
 
-.card:hover .glyph { transform: scale(1.06) rotate(-4deg); }
+.card:hover .glyph { transform: translateY(-0.5em) scale(1.03); }
 
 /* ---- mobile: drop the stacking, stack normally ---- */
 @media (max-width: 899px) {

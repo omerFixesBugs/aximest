@@ -25,6 +25,14 @@ const AFTER = [
 
 type Wire = { d: string; side: "in" | "out" };
 
+/* The Aximest symbol (viewBox "2 4 78 90"), and the points along its outer
+   edges where wires plug in: tools enter on the left, results leave right. */
+const MARK = "50,50 30,8 6,90 50,50 76,26 62,75";
+const PORTS = {
+  in: [[30, 8], [18, 49], [6, 90]],
+  out: [[76, 26], [69, 50.5], [62, 75]],
+} as const;
+
 const noop = () => () => {};
 
 function useReducedMotion() {
@@ -52,13 +60,19 @@ function measure(root: HTMLElement): Wire[] {
   const nodes = Array.from(root.querySelectorAll<HTMLElement>("[data-node]"));
   const across = local(nodes[0]).r <= core.x;
   const f = (v: number) => v.toFixed(1);
+  const mark = local(root.querySelector("[data-mark]")!);
+  const scale = (mark.r - mark.x) / 78;
+  const port = (side: Wire["side"], y: number) => {
+    const pts = PORTS[side].map(([px, py]) => [mark.x + (px - 2) * scale, mark.y + (py - 4) * scale]);
+    return pts.reduce((a, b) => (Math.abs(b[1] - y) < Math.abs(a[1] - y) ? b : a));
+  };
 
   return nodes.map((el) => {
     const n = local(el);
     const side = el.dataset.node as Wire["side"];
     if (across) {
-      const [x1, y1, x2, y2] =
-        side === "in" ? [n.r, n.cy, core.x, core.cy] : [core.r, core.cy, n.x, n.cy];
+      const [px, py] = port(side, n.cy);
+      const [x1, y1, x2, y2] = side === "in" ? [n.r, n.cy, px, py] : [px, py, n.x, n.cy];
       const m = f((x1 + x2) / 2);
       return { side, d: `M${f(x1)},${f(y1)} C${m},${f(y1)} ${m},${f(y2)} ${f(x2)},${f(y2)}` };
     }
@@ -154,10 +168,13 @@ export default function Hero() {
           </ul>
         </div>
 
+        {/* the system is the mark itself: drawn on load, a signal circling it */}
         <div className={styles.core} data-core>
-          <span className={styles.coreLabel}>Built by {site.name}</span>
-          <strong>Your system</strong>
-          <span>One place for every order, task and number.</span>
+          <svg className={styles.mark} viewBox="2 4 78 90" data-mark>
+            <polygon className={styles.markBase} points={MARK} pathLength={1} />
+            <polygon className={styles.markPulse} points={MARK} pathLength={1} />
+          </svg>
+          <span className={styles.coreLabel}>Your system · Built by {site.name}</span>
         </div>
 
         <div className={styles.col} data-side="out">
