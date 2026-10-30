@@ -115,7 +115,7 @@
   pointer-events: none;
 }
 
-.wires path {
+.wires .line {
   fill: none;
   stroke: rgba(0, 0, 0, 0.32);
   stroke-width: 1;
@@ -124,9 +124,24 @@
   transition: stroke-dashoffset 1.2s var(--ease-power2-out) 0.9s;
 }
 
-/* raw data rides in black, finished work rides out white */
-.wires circle { fill: var(--black); opacity: 0; transition: opacity 0.4s linear 1.8s; }
-.wires [data-side="out"] circle { fill: var(--white); }
+/* raw data rides in black, finished work rides out white: a zero-length
+   dash with a round cap is a dot, and moving the dash moves it down the wire */
+.wires .dot {
+  fill: none;
+  stroke: var(--black);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 0 1;
+  opacity: 0;
+  transition: opacity 0.4s linear 1.8s;
+  animation: ride 2.4s linear infinite;
+}
+.wires [data-side="out"] .dot { stroke: var(--white); }
+
+@keyframes ride {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -1; }
+}
 
 .col {
   position: relative;
@@ -179,18 +194,33 @@
   flex-direction: column;
   align-items: center;
   gap: var(--clamp-16);
+  --mark-h: clamp(120px, 15vw, 240px);
+  /* draggable: the wires follow it, and it springs back on release */
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.core:active { cursor: grabbing; }
+
+/* the 140x100 drawing box: the mark fills its height, the box all of it */
+.stage {
+  position: relative;
+  height: calc(var(--mark-h) * 100 / 90);
+  aspect-ratio: 140 / 100;
+  container-type: inline-size;
 }
 
 .mark {
   display: block;
-  height: clamp(120px, 15vw, 240px);
-  aspect-ratio: 78 / 90;
+  width: 100%;
+  height: 100%;
   overflow: visible;
-  fill: none;
   stroke-linejoin: round;
 }
 
 .markBase {
+  fill: var(--black);
   stroke: var(--black);
   stroke-width: 4.5;
   stroke-dasharray: 1;
@@ -200,6 +230,7 @@
 
 /* a short white signal running the loop, the same white as finished work */
 .markPulse {
+  fill: none;
   stroke: var(--white);
   stroke-width: 4.5;
   stroke-linecap: round;
@@ -240,16 +271,76 @@
   100% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
 }
 
+/* the text the box carries once the morph has filled it in; sized off the
+   drawing box so it fits at every width */
+.box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7cqw;
+  color: var(--white);
+  pointer-events: none;
+}
+
+.box > * {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s linear, transform 0.2s linear;
+}
+
+.boxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--clamp-12);
+  text-transform: uppercase;
+  color: var(--grey-600);
+}
+
+.boxLabel::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red-500);
+}
+
+.box strong {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 9.5cqw;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.box span:last-child {
+  font-size: max(12px, 4.2cqw);
+  line-height: 1.4;
+  color: var(--grey-600);
+}
+
 /* ---- load sequence ---- */
 .hero[data-ready="true"] .meta span,
 .hero[data-ready="true"] .headline span { opacity: 1; transform: none; }
 .hero[data-ready="true"] .side,
-.hero[data-ready="true"] .wires circle,
+.hero[data-ready="true"] .wires .dot,
 .hero[data-ready="true"] .col li,
 .hero[data-ready="true"] .coreLabel,
 .hero[data-ready="true"] .markPulse { opacity: 1; }
-.hero[data-ready="true"] .wires path,
+.hero[data-ready="true"] .wires .line,
 .hero[data-ready="true"] .markBase { stroke-dashoffset: 0; }
+
+/* box phase: the text arrives once the morph has filled the box */
+.core[data-phase="box"] .box > * {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.4s linear 0.8s, transform 0.7s var(--ease-expo-out) 0.8s;
+}
+.core[data-phase="box"] .markPulse,
+.core[data-phase="box"] .coreLabel { opacity: 0; transition: opacity 0.15s linear; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero *, .hero *::before { transition: none !important; animation: none !important; }
@@ -277,5 +368,6 @@
   .colLabel { display: none; }
   .col li { padding: 7px 10px; font-size: 12px; }
   .core { gap: 10px; }
-  .mark { height: 96px; }
+  .core { --mark-h: 120px; }
+  .box span:last-child { display: none; }
 }
